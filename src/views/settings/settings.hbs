@@ -24,17 +24,39 @@
                             style="background-color: #025A44; border: none;">
                             <h5 class="text-center">Linhas Adicionadas</h5>
                         </button>
-                        <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#resgisterInLine">
-                            Linha A
-                        </button>
-                        <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#resgisterInLine">
-                            Linha B
-                        </button>
-                        <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#resgisterInLine">
-                            Linha C
-                        </button>
+                        {{#each lines}}
+                        <div type="button" class="list-group-item list-group-item-action">
+                            <hr>
+                            <div class="row">
+                                <div class="col-5">
+                                    <Button class="btn btn-outline-info col-12" data-bs-toggle="modal"
+                                        data-bs-target="#resgisterInLine{{id}}">
+                                        {{dataValues.name}}
+                                    </Button>
+                                </div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                        data-bs-target="#resgisterInLine{{id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{dataValues.link}}" class="btn btn-info">
+                                        <i class="fas fa-link"></i>
+                                    </a>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{dataValues.link}}" class="btn btn-info">
+                                       <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        {{/each}}
                         <button type="button" style="background-color: #025a44c9; border: none;"
-                            class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#resgisterLine">
+                            class="list-group-item list-group-item-action" data-bs-toggle="modal"
+                            data-bs-target="#resgisterLine">
                             <h5 class="text-center text-light"><i class="fas fa-plus-square"></i></h5>
                         </button>
                     </div>

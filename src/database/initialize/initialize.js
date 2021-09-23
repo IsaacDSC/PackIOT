@@ -1,8 +1,14 @@
 //const { asd } = require('../models/accounts')
 const { LinesProductions } = require('../models/linesProductions')
-let databases = [LinesProductions]
+const { monitorLines } = require('../models/monitorLines')
+
+const TABLES = [LinesProductions, monitorLines]
 const initialize = async(active) => {
-    if (active === true) LinesProductions.sync({ force: true })
+    TABLES.forEach(element => {
+        if (active === true) element.sync({ force: true })
+        console.log(element)
+            //if (active === true) element.sync({ force: true })
+    })
 }
 
 

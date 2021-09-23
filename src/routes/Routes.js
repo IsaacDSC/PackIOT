@@ -11,10 +11,10 @@ const accountController = require('../controllers/accountController')
 
 
 //NAVIGATIONS ROUTES
-router.get('/', auth, homeController.index)
+router.get('/', homeController.index)
 
-router.get('/settings', auth, settingsController.index)
-router.get('/settings/register/line', auth, settingsController.registerLine)
+router.get('/settings', settingsController.index)
+router.post('/settings/register/line', settingsController.registerLine)
 
 router.get('/account', accountController.index)
 router.post('/account', accountController.account)

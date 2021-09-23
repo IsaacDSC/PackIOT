@@ -1,14 +1,20 @@
-const LinesProductions = require("../database/models/linesProductions")
+const { LinesProductions } = require("../database/models/linesProductions")
 
 class SettingsController {
     async index(req, res) {
-        res.render('settings/settings')
+        //const lines = 'df'
+        try {
+            const lines = await LinesProductions.findAll()
+            res.render('settings/settings', { lines: lines })
+        } catch (error) {
+            console.log(error)
+        }
+
     }
     async registerLine(req, res) {
         try {
-            const { nameLine, linkLine } = req.body
-            const created = await LinesProductions.create({ nameLine, linkLine })
-            console.log(created)
+            const { name, link } = req.body
+            const created = await LinesProductions.create({ name, link })
             res.redirect('/settings')
         } catch (error) {
             console.log(error)

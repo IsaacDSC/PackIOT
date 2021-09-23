@@ -1,18 +1,33 @@
-<div class="modal" tabindex="-1" id="resgisterInLine">
+{{#each lines}}
+<div class="modal" tabindex="-1" id="resgisterInLine{{id}}">
     <div class="modal-dialog">
         <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
             <div class="modalRegisterLine" style="background-color: rgba(0, 0, 0, 0.493);">
                 <div class="modal-header">
-                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Registrar Linha</h5>
+                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Registrar {{dataValues.name}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="" method="post">
                     <div class="modal-body">
                         <div class="container">
+                            <input type="hidden" name="line" value="{{dataValues.name}}">
                             <input type="file" class="form-control mt-1 mb-1" placeholder="">
                             <input type="text" class="form-control mt-1 mb-1" placeholder="Link da Linha">
-                            <input type="text" class="form-control mt-1 mb-1" placeholder="Nome da Linha">
-                            <input type="text" class="form-control mt-1 mb-1" placeholder="Tempo visível">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating">
+                                        <select name="active" class="form-select" id="floatingSelect"
+                                            aria-label="Floating label select example">
+                                            <option value="true">Ativado</option>
+                                            <option value="false">Desativado</option>
+                                        </select>
+                                        <label for="floatingSelect">Status para Linha</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control mt-1 mb-1" placeholder="Tempo visível">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -25,3 +40,4 @@
         </div>
     </div>
 </div>
+{{/each}}
