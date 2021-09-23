@@ -1,0 +1,70 @@
+﻿
+.menu-home a {
+    color: #222;
+}
+ .menu-home a:focus, .menu-home a:hover {
+        color: #222 !important;
+    }
+
+
+.page-home #categories .card .card-body p {
+    font-weight: normal;
+}
+
+.navbar-nav .megamenu-sidebar .nav-link {
+    font-style: normal;
+}
+
+.header-bottom .carousel-inner:after {
+    content: ""
+}
+
+.header-bottom .carousel-inner:before {
+    content: ""
+}
+
+.header-bottom .loja-phebo {
+    background-color: black;
+}
+
+.page-home #sliders .carousel-control-prev-icon, .page-home #sliders .carousel-control-next-icon {
+    background-color: black;
+}
+
+/*.product-list.owl-carousel .owl-nav button {
+    background-color: #025a44;
+}*/
+
+.btn.sem-estoque 
+{
+    background-color: #bfbfbf;
+    color: #6f6f6f;
+    text-shadow: 1px 1px #d0cece;
+}
+
+.btn.sem-estoque:hover
+{
+    box-shadow:none;
+}
+
+.btn.btn-secondary.whats {
+    width: 150px;
+    margin-top: 15px;
+}
+
+.btn.btn-secondary.whats i{
+    font-size: 2em;
+    margin-right: 5px;
+}
+
+@media (max-width: 575px) {
+    .hidden-xs {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 481px) {
+    .page-home #product-tabs {
+        background-image: url(/Content/Uploads/estampa-granado-1920.jpg) !important;
+    }
+}
