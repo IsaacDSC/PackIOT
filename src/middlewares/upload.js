@@ -18,21 +18,21 @@ async function createFolder(path, nameFolder) {
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
+        console.log(file)
         const isAccepted = ['image/png', 'image/jpg', 'image/jpeg']
         if (file.mimetype == isAccepted[0] || file.mimetype == isAccepted[1] || file.mimetype == isAccepted[2]) {
-            const createFolder = createFolder(banners.folder, `0${req.body.banner}_${file.originalname}_${banners.fileName}`) /// create folder and folder name line
+            // const createFolder = createFolder(banners.folder, `0${req.body.banner}_${file.originalname}_${banners.fileName}`) /// create folder and folder name line
             cb(null, banners.folder)
         } else {
             return false
         }
     },
     filename: function(req, file, cb) {
-        //function para contar arquivos
-        if (req.body.banner) {
-            fs.readdir(banners.folder, (err, paths) => {
-                cb(null, `0${req.body.banner}_${file.originalname}_${banners.fileName}`)
-            })
-        }
+        console.log(file)
+            //function para contar arquivos
+        fs.readdir(banners.folder, (err, paths) => {
+            cb(null, `0${req.body.banner}_${file.originalname}_${banners.fileName}`)
+        })
     }
 })
 const upload = multer({

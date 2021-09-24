@@ -27,7 +27,7 @@ router.post('/settings/register/line', settingsController.registerLine)
 router.get('/settings/delete/line/:name', settingsController.deleteLine)
     ///routes settings monitor line
 router.post('/settings/register/monitor/line', upload.single('img'), settingsController.registerMonitorLine)
-router.post('/settings/edit/monitor/line', settingsController.editMonitorLine)
+router.post('/settings/edit/monitor/line', upload.single('img'), settingsController.editMonitorLine)
 router.get('/settings/delete/monitor/line/:id', settingsController.deleteMonitorLine)
 
 ///routes authenticated

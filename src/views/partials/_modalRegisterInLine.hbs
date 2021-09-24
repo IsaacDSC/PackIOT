@@ -8,7 +8,7 @@
                         {{dataValues.name}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/settings/register/monitor/line" method="post">
+                <form action="/settings/register/monitor/line" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="container">
                             <input type="hidden" name="line" value="{{dataValues.name}}">

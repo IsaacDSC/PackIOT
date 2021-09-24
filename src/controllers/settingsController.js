@@ -30,6 +30,7 @@ class SettingsController {
         try {
             const { line, img, link, active, time } = req.body
             const created = await monitorLines.create({ line, img, link, active, time })
+                //console.log(req.body)
             req.flash('success_msg', 'Registrado com sucesso')
             res.redirect('/settings')
         } catch (error) {
@@ -44,7 +45,7 @@ class SettingsController {
             const { id, line, img, link, active, time } = req.body
             console.log(req.body)
             const updated = await monitorLines.update({ line, img, link, active, time }, { where: { id: id } })
-            insertRouterLines()
+                // insertRouterLines()
             req.flash('success_msg', 'Editado com sucesso!')
             res.redirect('/settings')
         } catch (error) {
