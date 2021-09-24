@@ -4,7 +4,8 @@
         <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
             <div class="modalRegisterLine" style="background-color: rgba(0, 0, 0, 0.493);">
                 <div class="modal-header">
-                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Registrar {{dataValues.name}}</h5>
+                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Registrar
+                        {{dataValues.name}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/settings/register/monitor/line" method="post">
@@ -25,7 +26,8 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="time" class="form-control mt-1 mb-1" placeholder="Tempo visível">
+                                    <input type="text" name="time" class="form-control mt-1 mb-1"
+                                        placeholder="Tempo visível">
                                 </div>
                             </div>
                         </div>
@@ -44,12 +46,13 @@
 
 
 {{#each Inlines}}
-<div class="modal" tabindex="-1" id="EditInLine{{id}}">
+<div class="modal" tabindex="-1" id="EditInLine{{dataValues.id}}">
     <div class="modal-dialog">
         <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
             <div class="modalRegisterLine" style="background-color: rgba(0, 0, 0, 0.493);">
                 <div class="modal-header">
-                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Editar {{dataValues.line}}</h5>
+                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Editar
+                        {{dataValues.line}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/settings/edit/monitor/line" method="post">
@@ -57,7 +60,8 @@
                         <div class="container">
                             <input type="hidden" name="id" value="{{dataValues.id}}">
                             <input type="file" name="img" class="form-control mt-1 mb-1" placeholder="">
-                            <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha" value="{{dataValues.link}}">
+                            <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"
+                                value="{{dataValues.link}}">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating">
@@ -71,7 +75,8 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="time" class="form-control mt-1 mb-1" placeholder="Tempo visível" value="{{dataValues.time}}">
+                                    <input type="text" name="time" class="form-control mt-1 mb-1"
+                                        placeholder="Tempo visível" value="{{dataValues.time}}">
                                 </div>
                             </div>
                         </div>

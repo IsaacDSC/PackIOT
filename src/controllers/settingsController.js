@@ -3,7 +3,6 @@ const { monitorLines } = require("../database/models/monitorLines")
 
 class SettingsController {
     async index(req, res) {
-        //const lines = 'df'
         try {
             const lines = await LinesProductions.findAll()
             const Inlines = await monitorLines.findAll()
@@ -42,6 +41,7 @@ class SettingsController {
     async editMonitorLine(req, res) {
         try {
             const { id, line, img, link, active, time } = req.body
+            console.log(req.body)
             const updated = await monitorLines.update({ line, img, link, active, time }, { where: { id: id } })
             req.flash('success_msg', 'Editado com sucesso!')
             res.redirect('/settings')

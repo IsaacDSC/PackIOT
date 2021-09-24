@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-//procedules from create router lines
-const { LinesProductions } = require('../database/models/linesProductions')
+
+//Helper addicted function generate controller dinamic acess routes
+const { insertRouterLines } = require('../helpers/generateRoutes')
 
 //middlewares
 const { auth } = require('../middlewares/auth')
@@ -12,7 +13,8 @@ const homeController = require('../controllers/homeController')
 const settingsController = require('../controllers/settingsController')
 const accountController = require('../controllers/accountController')
 
-LinesProductions
+//function helper create dinamic acess 
+insertRouterLines(router)
 
 //NAVIGATIONS ROUTES
 ///route initialize system
