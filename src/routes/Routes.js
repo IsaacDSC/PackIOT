@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-
+const multer = require('multer')
+    //const upload = multer({ dest: 'uploads/' })
 
 //Helper addicted function generate controller dinamic acess routes
 const { insertRouterLines } = require('../helpers/generateRoutes')
@@ -26,8 +27,8 @@ router.get('/settings', settingsController.index)
 router.post('/settings/register/line', settingsController.registerLine)
 router.get('/settings/delete/line/:name', settingsController.deleteLine)
     ///routes settings monitor line
-router.post('/settings/register/monitor/line', upload.single('img'), settingsController.registerMonitorLine)
-router.post('/settings/edit/monitor/line', upload.single('img'), settingsController.editMonitorLine)
+router.post('/settings/register/monitor/line', upload.single('image'), settingsController.registerMonitorLine)
+router.post('/settings/edit/monitor/line', upload.single('image'), settingsController.editMonitorLine)
 router.get('/settings/delete/monitor/line/:id', settingsController.deleteMonitorLine)
 
 ///routes authenticated

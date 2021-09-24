@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 
 const banners = {
-    folder: path.resolve(__dirname + '', '../', 'public', 'images', 'lines'),
+    folder: path.resolve(__dirname + '', '../', 'public', 'images', 'upload'),
     fileName: '.png'
 }
 
@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
         console.log(file)
             //function para contar arquivos
         fs.readdir(banners.folder, (err, paths) => {
-            cb(null, `0${req.body.banner}_${file.originalname}_${banners.fileName}`)
+            cb(null, `${file.originalname}${banners.fileName}`)
         })
     }
 })

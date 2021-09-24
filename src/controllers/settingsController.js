@@ -28,9 +28,8 @@ class SettingsController {
 
     async registerMonitorLine(req, res) {
         try {
-            const { line, img, link, active, time } = req.body
-            const created = await monitorLines.create({ line, img, link, active, time })
-                //console.log(req.body)
+            const { line, image, link, active, time } = req.body
+            const created = await monitorLines.create({ line, image, link, active, time })
             req.flash('success_msg', 'Registrado com sucesso')
             res.redirect('/settings')
         } catch (error) {
@@ -42,9 +41,8 @@ class SettingsController {
 
     async editMonitorLine(req, res) {
         try {
-            const { id, line, img, link, active, time } = req.body
-            console.log(req.body)
-            const updated = await monitorLines.update({ line, img, link, active, time }, { where: { id: id } })
+            const { id, line, image, link, active, time } = req.body
+            const updated = await monitorLines.update({ line, image, link, active, time }, { where: { id: id } })
                 // insertRouterLines()
             req.flash('success_msg', 'Editado com sucesso!')
             res.redirect('/settings')
