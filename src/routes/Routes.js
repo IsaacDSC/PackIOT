@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+//procedules from create router lines
+const { LinesProductions } = require('../database/models/linesProductions')
+
 //middlewares
 const { auth } = require('../middlewares/auth')
 
@@ -9,6 +12,7 @@ const homeController = require('../controllers/homeController')
 const settingsController = require('../controllers/settingsController')
 const accountController = require('../controllers/accountController')
 
+LinesProductions
 
 //NAVIGATIONS ROUTES
 ///route initialize system
