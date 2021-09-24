@@ -11,11 +11,19 @@ const accountController = require('../controllers/accountController')
 
 
 //NAVIGATIONS ROUTES
+///route initialize system
 router.get('/', homeController.index)
-
+    ///routes settings 
 router.get('/settings', settingsController.index)
+    ///routes settings line
 router.post('/settings/register/line', settingsController.registerLine)
+router.get('/settings/delete/line/:name', settingsController.deleteLine)
+    ///routes settings monitor line
+router.post('/settings/register/monitor/line', settingsController.registerMonitorLine)
+router.post('/settings/edit/monitor/line', settingsController.editMonitorLine)
+router.get('/settings/delete/monitor/line/:id', settingsController.deleteMonitorLine)
 
+///routes authenticated
 router.get('/account', accountController.index)
 router.post('/account', accountController.account)
 router.get('/account/register', accountController.create)
