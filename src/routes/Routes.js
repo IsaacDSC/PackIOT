@@ -7,6 +7,7 @@ const { insertRouterLines } = require('../helpers/generateRoutes')
 
 //middlewares
 const { auth } = require('../middlewares/auth')
+const { upload } = require('../middlewares/upload')
 
 //IMPORT CONTROLLERS
 const homeController = require('../controllers/homeController')
@@ -25,7 +26,7 @@ router.get('/settings', settingsController.index)
 router.post('/settings/register/line', settingsController.registerLine)
 router.get('/settings/delete/line/:name', settingsController.deleteLine)
     ///routes settings monitor line
-router.post('/settings/register/monitor/line', settingsController.registerMonitorLine)
+router.post('/settings/register/monitor/line', upload.single('img'), settingsController.registerMonitorLine)
 router.post('/settings/edit/monitor/line', settingsController.editMonitorLine)
 router.get('/settings/delete/monitor/line/:id', settingsController.deleteMonitorLine)
 
