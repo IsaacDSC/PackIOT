@@ -23,6 +23,7 @@ insertRouterLines(router)
 router.get('/', homeController.index)
     ///routes settings 
 router.get('/settings', settingsController.index)
+router.post('/settings/line/search', settingsController.searchLine)
     ///routes settings line
 router.post('/settings/register/line', settingsController.registerLine)
 router.get('/settings/delete/line/:name', settingsController.deleteLine)

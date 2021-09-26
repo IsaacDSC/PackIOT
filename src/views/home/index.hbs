@@ -1,92 +1,42 @@
-{{!-- <h1 class="text-center" style="font-weight: 800; font-family: Arial, Helvetica, sans-serif; font-size: 44px;">
-    Granado | Phebo </h1>
-<hr style="width: 50%; margin-left: 25%;">
-<div class="container" style="height: 500px">
-    <div class="card" style="background-color: rgba(0, 0, 0, 0.856);">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="text-light">Configurações Gerais</h5>
-                    <hr class="text-light">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-xl-4">
-                                <h5 class="text-light">Linha A</h5>
-                                <hr class="text-light">
-                                <input type="file" name="" id="" class="form-control mt-1">
-                                <input type="text" name="" id="" class="form-control mt-1" placeholder="Ordem Sliders">
-                                <input type="text" name="" id="" class="form-control mt-1"
-                                    placeholder="Tempo de Transferência">
-                                <button type="submit" class="btn btn-success col-12 mt-1">Salvar</button>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-xl-4">
-                                <h5 class="text-light">Linha B</h5>
-                                <hr class="text-light">
-                                <input type="file" name="" id="" class="form-control mt-1">
-                                <input type="text" name="" id="" class="form-control mt-1" placeholder="Ordem Sliders">
-                                <input type="text" name="" id="" class="form-control mt-1"
-                                    placeholder="Tempo de Transferência">
-                                <button type="submit" class="btn btn-success col-12 mt-1">Salvar</button>
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-xl-4">
-                                <h5 class="text-light">Linha C</h5>
-                                <hr class="text-light">
-                                <input type="file" name="" id="" class="form-control mt-1">
-                                <input type="text" name="" id="" class="form-control mt-1" placeholder="Ordem Sliders">
-                                <input type="text" name="" id="" class="form-control mt-1"
-                                    placeholder="Tempo de Transferência">
-                                <button type="submit" class="btn btn-success col-12 mt-1">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        {{#each lines}}
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active" time="{{dataValues.time}}">
+                <iframe class="selected" src="{{dataValues.link}}"
+                    style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+            </div>
+            <div class="item" time="{{dataValues.time}}">
+                <iframe class="selected" src="{{dataValues.link}}"
+                    style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
             </div>
         </div>
+        {{/each}}
+        <!-- Left and right controls -->
+
     </div>
-</div> --}}
+
+    <script>
+        $("#myCarousel").on('slid.bs.carousel', function (e) {
+            setInterval(() => {
+                $('.carousel').carousel('next')
+            }, e.relatedTarget.getAttribute("time"))
+
+            console.log(e.relatedTarget.getAttribute("time"))
+
+        });
+        $('.carousel').carousel('next')
 
 
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-
-<link rel="stylesheet" href="/css/carousel/owl.carousel.min.css">
-<link rel="stylesheet" href="/css/carousel/owl.theme.default.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
-<link rel="stylesheet" href="/css/carousel/style.css">
-
-<div class="home-slider owl-carousel js-fullheight">
-    {{#each lines}}
-    {{!-- {{dataValues.line}} --}}
-    {{!-- {{dataValues.time}} --}}
-    {{#if dataValues.link}}
-    <div class="slider-item js-fullheight">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-                <div class="col-md-12 ftco-animate">
-                    <iframe src="{{dataValues.link}}"
-                        style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{else}}
-    <div class="slider-item js-fullheight">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-                <div class="col-md-12 ftco-animate">
-                   <img src="/images/upload/{{image}}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    {{/if}}
-
-    {{/each}}
+        $('.carousel').carousel({
+            interval: false
+        });
+    </script>
 </div>
-
-<script src="/js/carousel/jquery.min.js"></script>
-<script src="/js/carousel/popper.js"></script>
-<script src="/js/carousel/bootstrap.min.js"></script>
-<script src="/js/carousel/owl.carousel.min.js"></script>
-<script src="/js/carousel/main.js"></script>

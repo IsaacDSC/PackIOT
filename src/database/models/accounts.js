@@ -1,7 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
 const db = require('../settings/ConnSequelize')
-    /* class Account extends Sequelize.Model {} */
-
 
 const Account = db.sequelize.define('accounts', {
     id: {
@@ -25,25 +23,3 @@ const Account = db.sequelize.define('accounts', {
 })
 
 module.exports = Account
-
-
-/* Account.init({
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-}, {
-    sequelize,
-    modelName: 'accounts'
-})
-
-
-module.exports = Account */

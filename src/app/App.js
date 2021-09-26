@@ -5,6 +5,7 @@ const hbs = require('express-handlebars')
 const path = require('path')
 const session = require('express-session')
 const flash = require('express-flash')
+const cors = require('cors')
 const { sequelize } = require('../database/settings/ConnSequelize')
 
 const passport = require('passport')
@@ -26,6 +27,7 @@ class App {
         this.express.use(bodyParser.urlencoded({ extended: false }))
         this.express.use(bodyParser.json())
         this.express.use(express.static(path.join(__dirname, '../', 'public')))
+        this.express.use(cors())
     }
     session() {
         this.express.use(session({

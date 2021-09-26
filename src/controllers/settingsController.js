@@ -77,6 +77,16 @@ class SettingsController {
         }
     }
 
+    async searchLine(req, res) {
+        try {
+            const line = await monitorLines.findAll({ where: { line: req.body.line } })
+            console.log(line)
+            return res.send(line)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
 
 
