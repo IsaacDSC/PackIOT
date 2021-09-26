@@ -22,4 +22,4 @@ const Account = db.sequelize.define('accounts', {
     }
 })
 
-module.exports = Account
+module.exports = { Account }

@@ -1,4 +1,4 @@
-const Account = require('../models/accounts')
+const { Account } = require('../models/accounts')
 const bcrypt = require('bcrypt')
 
 

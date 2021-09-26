@@ -20,7 +20,7 @@ class AccountController {
 
     }
     async create(req, res) {
-        const created = await AccountsProcedules.create('Admin', 'admin@admin.com', '123456')
+        const created = await AccountsProcedules.create('Administrador', 'admin@admin.com', 'Inbatch1q2w3e')
         if (created) res.json({ created: created, message: 'Registrado com sucesso' })
         else res.json({ message: 'Houve um problema!' })
     }
