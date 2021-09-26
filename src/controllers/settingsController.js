@@ -29,7 +29,7 @@ class SettingsController {
     async registerMonitorLine(req, res) {
         try {
             const { line, image, link, active, time } = req.body
-            const created = await monitorLines.create({ line, image, link, active, time })
+            const created = await monitorLines.create({ line, image: req.imageMonitor, link, active, time })
             req.flash('success_msg', 'Registrado com sucesso')
             res.redirect('/settings')
         } catch (error) {
@@ -55,7 +55,7 @@ class SettingsController {
 
     async deleteMonitorLine(req, res) {
         try {
-            const deleted = await monitorLines.destroy({ where: { id: req.params.name } })
+            const deleted = await monitorLines.destroy({ where: { id: req.params.id } })
             req.flash('success_msg', 'Deletado com sucesso!')
             res.redirect('/settings')
         } catch (error) {
@@ -80,7 +80,6 @@ class SettingsController {
     async searchLine(req, res) {
         try {
             const line = await monitorLines.findAll({ where: { line: req.body.line } })
-            console.log(line)
             return res.send(line)
         } catch (error) {
             console.log(error)

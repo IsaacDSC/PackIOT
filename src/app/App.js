@@ -57,6 +57,15 @@ class App {
         this.express.engine('hbs', hbs({
             defaultLayout: 'main.hbs',
             extname: 'hbs',
+            helpers: {
+                ifEquals: function(arg1, arg2, options) {
+                    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                },
+                replace: function(find, replace, options) {
+                    var string = options.fn(this);
+                    return string.replace(find, replace);
+                },
+            }
         }));
         this.express.set('view engine', 'hbs');
         this.express.set('views', path.join(__dirname, '../', '/views/'))

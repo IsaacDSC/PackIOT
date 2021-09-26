@@ -1,0 +1,18 @@
+<div class="container" style="">
+    <div class="card" style="background-image: url(/images/bg_modal.png);  min-height: 400px; ">
+        <div class="background" style="background-color: #c9c9c97a; min-height: 400px;">
+            <h1 class="text-center text-dark" style="font-weight: 900;">Granado | Phebo</h1>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    {{#each navigators}}
+                    <div class="col">
+                        <a href="{{dataValues.name}}" class="btn btn-dark col-12">{{dataValues.name}}</a>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- style="background-color: #c9c9c97a; min-height: 600px;" --}}

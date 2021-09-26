@@ -1,10 +1,10 @@
-const Account = require('../database/models/accounts')
+const { LinesProductions } = require('../database/models/linesProductions')
 
 
 class HomeController {
     async index(req, res) {
-        const results = await Account.findAll()
-        res.render('home/index', { layout: 'lines.hbs' })
+        const navigators = await LinesProductions.findAll()
+        res.render('lines/navigation', { navigators })
     }
 }
 

@@ -19,10 +19,11 @@ async function insertLines(content) {
     const monitor = document.querySelector('#monitor')
     monitor.innerHTML = ''
     content.forEach(element => {
-        monitor.innerHTML += `
+                monitor.innerHTML += `
     <div class="row mt-1 mb-1">    
         <div class="col-xl-2 col-sm-12 col-md-12 text-center">
-            <img src="/images/lines/01.png" width="100" alt="${element.img}">
+        ${element.image? `<a target="_blank" href="/images/uploads/${element.image}"><img src="/images/uploads/${element.image}" class="mt-4" width="100" alt="${element.image}"></a>`:`<a target="_blank" href="${element.link}" class="btn btn-success col-12 mt-4"><i class="fas fa-link"></i></a>`}
+            
         </div>       
         <div class="col-xl-6 col-sm-12 col-md-12 mt-4 text-center">
             <h4>${element.line} - ${element.time} Min -  ${element.active==true? 'Ativado': 'Desativado' }</h4>
@@ -35,7 +36,7 @@ async function insertLines(content) {
                 </button>
                 <a href="/overview/${element.line.replace(/\s/g, '')}" target="_blank"
                     class="btn btn-dark col-12">
-                    <i class="fas fa-link"></i>
+                    <i class="fas fa-eye"></i>
                 </a>
                 <a href="/settings/delete/monitor/line/${element.id}"
                     class="btn btn-dark col-12">

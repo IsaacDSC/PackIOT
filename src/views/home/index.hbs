@@ -1,42 +1,79 @@
+<style>
+    body {
+        display: flex;
+        flex-direction: center;
+        justify-content: center;
+        align-items: center;
+    }
 
-<div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        {{#each lines}}
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="item active" time="{{dataValues.time}}">
-                <iframe class="selected" src="{{dataValues.link}}"
-                    style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-            </div>
-            <div class="item" time="{{dataValues.time}}">
-                <iframe class="selected" src="{{dataValues.link}}"
-                    style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
-            </div>
-        </div>
-        {{/each}}
-        <!-- Left and right controls -->
+    #slider {
+        width: 100%;
+        max-width: 100%;
+        height: 49vw;
+        max-height: 100%;
+        position: relative;
+    }
 
-    </div>
+    #slider iframe {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 800ms;
+    }
 
-    <script>
-        $("#myCarousel").on('slid.bs.carousel', function (e) {
-            setInterval(() => {
-                $('.carousel').carousel('next')
-            }, e.relatedTarget.getAttribute("time"))
+    #slider iframe.selected {
+        opacity: 1;
+    }
+</style>
 
-            console.log(e.relatedTarget.getAttribute("time"))
-
-        });
-        $('.carousel').carousel('next')
-
-
-        $('.carousel').carousel({
-            interval: false
-        });
-    </script>
+<div id="slider">
+    {{#each lines}}
+    {{#if dataValues.link}}
+    <iframe class="selected" src="{{dataValues.link}}"
+        style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+    {{else}}
+    <img src="/images/upload/{{dataValues.image}}" alt="">
+    {{/if}}
+    {{/each}}
 </div>
+
+<script>
+    let time = 5000
+    async function timeProcess(time) {
+        let timeValue = time * 1000
+        return timeValue
+    }
+
+    let currentImageIndex = 0
+    let images = document.querySelectorAll("#slider iframe")
+    let max = images.length
+
+    async function nextImage() {
+
+        images[currentImageIndex]
+            .classList.remove("selected")
+
+        currentImageIndex++
+
+        if (currentImageIndex >= max)
+            currentImageIndex = 0
+
+        images[currentImageIndex]
+            .classList.add("selected")
+        return currentImageIndex
+    }
+
+    function start() {
+        setInterval(() => {
+            nextImage()
+        }, time)
+    }
+
+    setInterval(() => {
+        document.location.reload(true)
+    }, time * 3)
+
+    window.addEventListener("load", start)
+</script>
