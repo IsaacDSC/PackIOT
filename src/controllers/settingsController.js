@@ -49,7 +49,6 @@ class SettingsController {
             initializeSocket.atualizaring(true)
             const { id, line, image, link, active, time } = req.body
             const updated = await monitorLines.update({ line, image, link, active, time }, { where: { id: id } })
-                // insertRouterLines()
             req.flash('success_msg', 'Editado com sucesso!')
             res.redirect('/settings')
         } catch (error) {

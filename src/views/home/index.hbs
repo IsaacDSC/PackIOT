@@ -1,32 +1,3 @@
-<style>
-    body {
-        display: flex;
-        flex-direction: center;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #slider {
-        width: 100%;
-        max-width: 100%;
-        height: 49vw;
-        max-height: 100%;
-        position: relative;
-    }
-
-    #slider iframe {
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: opacity 800ms;
-    }
-
-    #slider iframe.selected {
-        opacity: 1;
-    }
-</style>
 
 <div id="slider">
     {{#each lines}}
@@ -34,58 +5,10 @@
     <iframe class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"
         style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
     {{else}}
-    <img src="/images/upload/{{dataValues.image}}" alt="">
+    <img src="/images/upload/{{dataValues.image}}" style="width:100%; height:100%;" alt="">
     {{/if}}
     {{/each}}
 </div>
 
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<script>
-    var socket = io()
-    socket.on('chat message', function (msg) {
-       alert('Atualize a Pagina!')
-       return false;
-    });
-</script>
-
-<script>
-    let currentImageIndex = 0
-    let images = document.querySelectorAll("#slider iframe")
-    let max = images.length
-
-    async function nextImage() {
-
-        images[currentImageIndex]
-            .classList.remove("selected")
-
-        currentImageIndex++
-
-        if (currentImageIndex >= max)
-            currentImageIndex = 0
-
-        images[currentImageIndex]
-            .classList.add("selected")
-        return currentImageIndex
-    }
-
-    async function getTime() {
-        let time = document.querySelector('iframe').getAttribute('time')
-        let timeVALUE = Number(time) * 100
-        return timeVALUE
-    }
-
-
-    async function start() {
-        setInterval(async () => {
-            //alert(getTime())
-            //nextImage()
-        }, 5000)
-    }
-
-
-
-    window.addEventListener("load", start)
-</script>

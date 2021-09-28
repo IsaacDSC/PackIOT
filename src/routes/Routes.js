@@ -26,7 +26,7 @@ router.get('/settings', settingsController.index)
 router.post('/settings/line/search', settingsController.searchLine)
     ///routes settings line
 router.post('/settings/register/line', settingsController.registerLine)
-router.get('/settings/delete/line/:name', settingsController.deleteLine)
+router.get('/settings/delete/line/:id', settingsController.deleteLine)
     ///routes settings monitor line
 router.post('/settings/register/monitor/line', upload.single('image'), settingsController.registerMonitorLine)
 router.post('/settings/edit/monitor/line', upload.single('image'), settingsController.editMonitorLine)
