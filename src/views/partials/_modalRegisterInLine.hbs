@@ -22,12 +22,16 @@
                                             <option value="true">Ativado</option>
                                             <option value="false">Desativado</option>
                                         </select>
-                                        <label for="floatingSelect">Status para Linha</label>
+                                        <label for="floatingSelect">Status</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <input type="text" name="time" class="form-control mt-1 mb-1"
                                         placeholder="Tempo visível">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="ordem" class="form-control mt-1 mb-1"
+                                        placeholder="Ordem">
                                 </div>
                             </div>
                         </div>
@@ -55,7 +59,7 @@
                         {{dataValues.line}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/settings/edit/monitor/line" method="post" enctype="multipart/form-data">
+                <form action="/settings/edit/monitor/ordem/line" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="container">
                             <input type="hidden" name="id" value="{{dataValues.id}}">

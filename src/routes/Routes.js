@@ -31,6 +31,7 @@ router.get('/settings/delete/line/:name', settingsController.deleteLine)
 router.post('/settings/register/monitor/line', upload.single('image'), settingsController.registerMonitorLine)
 router.post('/settings/edit/monitor/line', upload.single('image'), settingsController.editMonitorLine)
 router.get('/settings/delete/monitor/line/:id', settingsController.deleteMonitorLine)
+router.post('/settings/edit/monitor/ordem/line', settingsController.EditOrdem)
 
 ///routes authenticated
 router.get('/account', accountController.index)

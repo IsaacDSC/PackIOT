@@ -94,8 +94,20 @@ class SettingsController {
         }
     }
 
+    async EditOrdem(req, res) {
+        try {
+            const { id, ordem, active } = req.body
+            console.log(id, ordem, active)
+            const updated = await monitorLines.update({ ordem, active }, { where: { id: id } })
+            req.flash('success_msg', 'Editado com sucesso!')
+            res.redirect('/settings')
+        } catch (error) {
+            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
+            res.redirect('/settings')
+            console.log(error)
+        }
 
-
+    }
 
 }
 
