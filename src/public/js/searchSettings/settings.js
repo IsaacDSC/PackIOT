@@ -1,5 +1,5 @@
-async function settingsLines(nameLine) {
-    const response = await fetch('http://localhost:80/settings/line/search', {
+async function settingsLines(nameLine, serverHost) {
+    const response = await fetch(`http://${serverHost}/settings/line/search`, {
         method: 'POST',
         headers: {
             //'Content-Type': 'application/x-www-form-urlencoded'

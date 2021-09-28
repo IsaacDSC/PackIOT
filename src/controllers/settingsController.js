@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { LinesProductions } = require("../database/models/linesProductions")
 const { monitorLines } = require("../database/models/monitorLines")
 const { insertRouterLines } = require('../helpers/generateRoutes')
@@ -6,9 +7,10 @@ const initializeSocket = require('../Server')
 class SettingsController {
     async index(req, res) {
         try {
+            let ServerHost = process.env.PRODUCTION
             const lines = await LinesProductions.findAll()
             const Inlines = await monitorLines.findAll()
-            res.render('settings/settings', { lines, Inlines })
+            res.render('settings/settings', { lines, Inlines, ServerHost })
         } catch (error) {
             console.log(error)
         }
