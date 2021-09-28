@@ -31,6 +31,6 @@ const monitorLines = db.sequelize.define('monitorLines', {
     },
 })
 
-monitorLines.sync({ force: true })
+//monitorLines.sync({ force: true })
 
 module.exports = { monitorLines }
