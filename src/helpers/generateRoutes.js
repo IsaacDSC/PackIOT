@@ -9,7 +9,12 @@ const insertRouterLines = async(router) => {
         lines.forEach(element => {
             const strLine = element.name.replace(/\s/g, '');
             router.get(`/overview/${strLine}`, async(req, res) => {
-                const linksInLines = await monitorLines.findAll({ where: { line: element.name, active: true } })
+                const linksInLines = await monitorLines.findAll({
+                    where: { line: element.name, active: true },
+                    order: [
+                        ['ordem', 'ASC']
+                    ]
+                })
                 res.render('home/index', { layout: 'lines.hbs', lines: linksInLines })
             })
         });
