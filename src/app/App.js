@@ -28,6 +28,10 @@ class App {
         this.express.use(bodyParser.json())
         this.express.use(express.static(path.join(__dirname, '../', 'public')))
         this.express.use(cors())
+        this.express.use((req, res, next) => {
+            res.header("Access-Control-Allow-Origin", "*"); //The ionic server
+            next();
+        });
     }
     session() {
         this.express.use(session({

@@ -8,6 +8,9 @@ const monitorLines = db.sequelize.define('monitorLines', {
         autoIncrement: true,
         allowNull: false,
     },
+    ordem: {
+        type: Sequelize.INTEGER,
+    },
     line: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -28,6 +31,6 @@ const monitorLines = db.sequelize.define('monitorLines', {
     },
 })
 
-
+//monitorLines.sync({ force: true })
 
 module.exports = { monitorLines }

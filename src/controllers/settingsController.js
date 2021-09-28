@@ -1,6 +1,7 @@
 const { LinesProductions } = require("../database/models/linesProductions")
 const { monitorLines } = require("../database/models/monitorLines")
 const { insertRouterLines } = require('../helpers/generateRoutes')
+const initializeSocket = require('../Server')
 
 class SettingsController {
     async index(req, res) {
@@ -15,6 +16,7 @@ class SettingsController {
     }
     async registerLine(req, res) {
         try {
+            initializeSocket.atualizaring(true)
             const { name, link } = req.body
             const created = await LinesProductions.create({ name, link })
             req.flash('success_msg', 'Registrado com sucesso')
@@ -28,6 +30,7 @@ class SettingsController {
 
     async registerMonitorLine(req, res) {
         try {
+            initializeSocket.atualizaring(true)
             const { line, image, link, active, time } = req.body
             const created = await monitorLines.create({ line, image: req.imageMonitor, link, active, time })
             req.flash('success_msg', 'Registrado com sucesso')
@@ -41,6 +44,7 @@ class SettingsController {
 
     async editMonitorLine(req, res) {
         try {
+            initializeSocket.atualizaring(true)
             const { id, line, image, link, active, time } = req.body
             const updated = await monitorLines.update({ line, image, link, active, time }, { where: { id: id } })
                 // insertRouterLines()
@@ -55,6 +59,7 @@ class SettingsController {
 
     async deleteMonitorLine(req, res) {
         try {
+            initializeSocket.atualizaring(true)
             const deleted = await monitorLines.destroy({ where: { id: req.params.id } })
             req.flash('success_msg', 'Deletado com sucesso!')
             res.redirect('/settings')
@@ -67,6 +72,7 @@ class SettingsController {
 
     async deleteLine(req, res) {
         try {
+            initializeSocket.atualizaring(true)
             const deleted = await LinesProductions.destroy({ where: { id: req.params.id } })
             req.flash('success_msg', 'Deletado com sucesso!')
             res.redirect('/settings')
