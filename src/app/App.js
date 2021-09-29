@@ -32,6 +32,10 @@ class App {
             res.header("Access-Control-Allow-Origin", "*"); //The ionic server
             next();
         });
+
+        this.express.use((req, res, next) => {
+            res.render('404/NotFound', { layout: 'NotFound.hbs' })
+        })
     }
     session() {
         this.express.use(session({
