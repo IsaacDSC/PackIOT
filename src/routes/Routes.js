@@ -38,6 +38,8 @@ router.get('/account', accountController.index)
 router.post('/account', accountController.account)
 router.get('/account/register', accountController.create)
 
-
+router.use((req, res, next) => {
+    res.render('404/NotFound', { layout: 'NotFound.hbs' })
+})
 
 module.exports = router
