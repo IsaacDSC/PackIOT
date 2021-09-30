@@ -6,7 +6,7 @@ let max = images.length
 
 
 async function getTime() {
-    let time = document.querySelector('.selected').getAttribute('time') * 100
+    let time = document.querySelector('.selected').getAttribute('time') * 1000
     return time
 }
 
