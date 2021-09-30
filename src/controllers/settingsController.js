@@ -3,115 +3,103 @@ const { LinesProductions } = require("../database/models/linesProductions")
 const { monitorLines } = require("../database/models/monitorLines")
 const { insertRouterLines } = require('../helpers/generateRoutes')
 const initializeSocket = require('../Server')
+const LinesProcedules = require('../database/procedules/LinesProcedules')
+const MessagesFlash = require('../helpers/messages')
+const InlinesProcedules = require('../database/procedules/InlinesProcedules')
 
 class SettingsController {
     async index(req, res) {
         try {
             let ServerHost = process.env.PRODUCTION
-            const lines = await LinesProductions.findAll()
-            const Inlines = await monitorLines.findAll()
-            res.render('settings/settings', { lines, Inlines, ServerHost })
+            const lines = await LinesProcedules.searchAll()
+            let Lines = lines ? lines : null
+            res.render('settings/settings', { lines: Lines, ServerHost })
         } catch (error) {
             console.log(error)
         }
 
     }
     async registerLine(req, res) {
-        try {
+        const { name, link } = req.body
+        const created = await LinesProcedules.create(name, link)
+        if (created) {
             initializeSocket.atualizaring(true)
-            const { name, link } = req.body
-            const created = await LinesProductions.create({ name, link })
-            req.flash('success_msg', 'Registrado com sucesso')
-            res.redirect('/settings')
-        } catch (error) {
-            console.log(error)
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
+            let message = new MessagesFlash().success(req, res, '/settings')
+            console.log(message)
+        } else {
+            let message = new MessagesFlash().error(req, res, '/settings')
+            console.log(message)
         }
     }
 
     async registerMonitorLine(req, res) {
-        try {
+        const created = await InlinesProcedules.create({ line: req.body.line, image: req.imageMonitor, link: req.body.link, active: req.body.active, time: req.body.time, ordem: req.body.order })
+        if (created) {
             initializeSocket.atualizaring(true)
-            const { line, image, link, active, time } = req.body
-            const created = await monitorLines.create({ line, image: req.imageMonitor, link, active, time })
-            req.flash('success_msg', 'Registrado com sucesso')
-            res.redirect('/settings')
-        } catch (error) {
-            console.log(error)
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
+            let msg = new MessagesFlash().success(req, res, '/settings')
+            console.log(msg)
+        } else {
+            let msgError = new MessagesFlash().error(req, res, '/settings')
+            console.error(msgError)
         }
     }
 
+
     async editMonitorLine(req, res) {
-        try {
+        const { id, line, image, link, active, time } = req.body
+        const updated = await InlinesProcedules.updated({ line, image, link, active, time }, id)
+        if (updated) {
             initializeSocket.atualizaring(true)
-            const { id, line, image, link, active, time } = req.body
-            const updated = await monitorLines.update({ line, image, link, active, time }, { where: { id: id } })
-            req.flash('success_msg', 'Editado com sucesso!')
-            res.redirect('/settings')
-        } catch (error) {
-            console.log(error)
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
+            let msg_success = new MessagesFlash().success(req, res, '/settings')
+            console.log(msg_success)
+        } else {
+            let error_success = new MessagesFlash().success(req, res, '/settings')
+            console.log(error_success)
         }
     }
 
     async deleteMonitorLine(req, res) {
-        try {
+        const deleted = await InlinesProcedules.delete(req.params.id)
+        if (deleted) {
             initializeSocket.atualizaring(true)
-            const deleted = await monitorLines.destroy({ where: { id: req.params.id } })
-            req.flash('success_msg', 'Deletado com sucesso!')
-            res.redirect('/settings')
-        } catch (error) {
-            console.log(error)
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
+            let msg_success = new MessagesFlash().success(req, res, '/settings')
+            console.log(msg_success)
+        } else {
+            let error_success = new MessagesFlash().error(req, res, '/settings')
+            console.log(error_success)
         }
+
     }
 
     async deleteLine(req, res) {
-        try {
+        const deleted = await LinesProcedules.delete(req.params.id)
+        if (deleted) {
             initializeSocket.atualizaring(true)
-            const deleted = await LinesProductions.destroy({ where: { id: req.params.id } })
-            req.flash('success_msg', 'Deletado com sucesso!')
-            res.redirect('/settings')
-        } catch (error) {
-            console.log(error)
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
+            let msg_success = new MessagesFlash().success(req, res, '/settings')
+            console.log(msg_success)
+        } else {
+            let error_success = new MessagesFlash().error(req, res, '/settings')
+            console.log(error_success)
         }
     }
 
-
     async searchLine(req, res) {
-        try {
-            const line = await monitorLines.findAll({
-                where: { line: req.body.line },
-                order: [
-                    ['ordem', 'ASC']
-                ]
-            })
-            return res.send(line)
-        } catch (error) {
-            console.log(error)
-        }
+        const line = await InlinesProcedules.searchByLine(req.body.line)
+        if (line) res.send(line)
+        else res.send(null)
     }
 
     async EditOrdem(req, res) {
-        try {
-            const { id, ordem, active } = req.body
-            console.log(id, ordem, active)
-            const updated = await monitorLines.update({ ordem, active }, { where: { id: id } })
-            req.flash('success_msg', 'Editado com sucesso!')
-            res.redirect('/settings')
-        } catch (error) {
-            req.flash('error_msg', 'Houve um problema tente novamente mais tarde')
-            res.redirect('/settings')
-            console.log(error)
+        const { id, ordem, active } = req.body
+        const updated = await InlinesProcedules.EditOrdem({ ordem, active }, id)
+        if (updated) {
+            initializeSocket.atualizaring(true)
+            let msg_success = new MessagesFlash().success(req, res, '/settings')
+            console.log(msg_success)
+        } else {
+            let error_success = new MessagesFlash().error(req, res, '/settings')
+            console.log(error_success)
         }
-
     }
 
 }
