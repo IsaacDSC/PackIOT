@@ -9,8 +9,9 @@ class SettingsController {
         try {
             let ServerHost = process.env.PRODUCTION
             const lines = await LinesProcedules.searchAll()
+            const Inlines = await InlinesProcedules.searchAll()
             let Lines = lines ? lines : null
-            res.render('settings/settings', { lines: Lines, ServerHost })
+            res.render('settings/settings', { lines: Lines, Inlines, ServerHost })
         } catch (error) {
             console.log(error)
         }

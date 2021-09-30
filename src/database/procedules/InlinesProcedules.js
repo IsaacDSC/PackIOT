@@ -43,7 +43,7 @@ class InLineProcedules {
         }
     }
 
-    async EditOrdem(objEdit) {
+    async EditOrdem(objEdit, id) {
         try {
             const updated = await monitorLines.update(objEdit, { where: { id: id } })
             return updated
@@ -52,6 +52,15 @@ class InLineProcedules {
             return false
         }
 
+    }
+    async searchAll() {
+        try {
+            const search = await monitorLines.findAll()
+            return search
+        } catch (error) {
+            console.log(error)
+            return false
+        }
     }
 
 }
