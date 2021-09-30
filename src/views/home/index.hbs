@@ -2,10 +2,10 @@
     {{#each lines}}
 
     {{#if dataValues.link}}
-    <iframe class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"
+    <iframe id="teste"  class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"
         style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
     {{else}}
-    <img src="/images/uploads/{{dataValues.image}}" style="width:100%; height:100%;" alt="{{dataValues.image}}">
+    <img  id="teste" src="/images/uploads/{{dataValues.image}}" style="width:100%; height:100%;" alt="{{dataValues.image}}">
     {{/if}}
     {{/each}}
 </div>

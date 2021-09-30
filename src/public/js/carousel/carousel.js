@@ -1,6 +1,6 @@
 let timePV = 1000
 let currentImageIndex = 0
-let images = document.querySelectorAll("#slider iframe")
+let images = document.querySelectorAll("#slider #teste")
 let max = images.length
 
 
