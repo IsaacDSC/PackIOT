@@ -22,7 +22,7 @@ insertRouterLines(router) //routers prefix usin /overview sufix using name Line
 ///route initialize system
 router.get('/', homeController.index)
     ///routes settings 
-router.get('/settings', settingsController.index)
+router.get('/settings', auth, settingsController.index)
 router.post('/settings/line/search', settingsController.searchLine)
     ///routes settings line
 router.post('/settings/register/line', auth, settingsController.registerLine)
