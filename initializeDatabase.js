@@ -14,5 +14,5 @@ const initialize = async(active) => {
 
 initialize()
 const createUser = async() => {
-    Account.create({ username: 'Administrador', email: 'granadophebo.com.br', password: 'Inbatch1q2w3e' })
+    Account.create({ username: 'Administrador', email: 'granadophebo.com.br', password: 'packIOT' })
 }

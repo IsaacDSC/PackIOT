@@ -84,9 +84,15 @@ class SettingsController {
         }
     }
 
+
     async searchLine(req, res) {
         try {
-            const line = await monitorLines.findAll({ where: { line: req.body.line } })
+            const line = await monitorLines.findAll({
+                where: { line: req.body.line },
+                order: [
+                    ['ordem', 'ASC']
+                ]
+            })
             return res.send(line)
         } catch (error) {
             console.log(error)
