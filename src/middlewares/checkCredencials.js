@@ -11,13 +11,13 @@ module.exports = function(passport) {
     }, (username, password, done) => {
         Account.findOne({ where: { username: username } }).then((user) => {
             if (!user) {
-                return done(null, false, { message: 'Usuário ou senha não conferem' })
+                return done(null, false, { message: 'Sua conta ou senha está incorreta.' })
             }
             bcrypt.compare(password, user.password, (err, batem) => {
                 if (batem) {
                     return done(null, user)
                 } else {
-                    return done(null, false, { message: "Usuário ou Senha incorreta" })
+                    return done(null, false, { message: "Sua conta ou senha está incorreta." })
                 }
             })
         })
