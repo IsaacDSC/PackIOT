@@ -8,6 +8,8 @@ const flash = require('express-flash')
 const cors = require('cors')
 const { sequelize } = require('../database/settings/ConnSequelize')
 
+const LinesProcedules = require('../database/procedules/LinesProcedules')
+
 const passport = require('passport')
 require('../middlewares/checkCredencials')(passport)
 
@@ -54,10 +56,11 @@ class App {
         this.express.use(passport.initialize())
         this.express.use(passport.session())
     }
-    routes() {
+    async routes() {
         this.express.use(router)
-        this.express.use((req, res, next) => {
-            res.render('404/NotFound', { layout: 'NotFound.hbs' })
+        this.express.use(async(req, res, next) => {
+            const lines = await LinesProcedules.searchAll()
+            res.render('404/NotFound', { layout: 'NotFound.hbs', lines })
         })
     }
     engine() {

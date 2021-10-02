@@ -4,7 +4,7 @@ class OverviewLinesController {
 
     async index(req, res) {
         const linksInLines = await InlineProcedules.overViewSearch(req.params.line)
-        if (linksInLines) res.render('home/index', { layout: 'lines.hbs', lines: linksInLines })
+        if (linksInLines.length > 0) res.render('home/index', { layout: 'lines.hbs', lines: linksInLines })
         else res.redirect('/notfound')
     }
 

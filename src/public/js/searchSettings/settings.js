@@ -21,7 +21,7 @@ async function insertLines(content) {
     content.forEach(element => {
                 monitor.innerHTML += `
 <form action="/settings/edit/monitor/ordem/line" method="post">
-<input type="hidden" name="id" value="${element.id}">
+    <input type="hidden" name="id" value="${element.id}">
     <div class="row mt-1 mb-1"> 
         <div class="col-xl-2 col-sm-2 col-md-2  text-center">
             <h4 class="text-center">${element.line}</h4>
@@ -43,7 +43,7 @@ async function insertLines(content) {
                 <button type="button" class="btn btn-dark col-12" data-bs-toggle="modal" data-bs-target="#EditInLine${element.id}" title="Editar">
                     <i class=" fas fa-edit"></i>
                 </button>
-                <a href="/overview/${element.line.replace(/\s/g, '')}" target="_blank" class="btn btn-dark col-12" title="Vizualizar">
+                <a href="/overview/${element.line}" target="_blank" class="btn btn-dark col-12" title="Vizualizar">
                     <i class="fas fa-eye"></i>
                 </a>
                 <a href="${element.image? `/images/uploads/${element.image}`:`${element.link}`}" target="_blank" class="btn btn-dark col-12" title="Abrir Link">
@@ -59,5 +59,4 @@ async function insertLines(content) {
 </form>
         `
     })
-
 }
