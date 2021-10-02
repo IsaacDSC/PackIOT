@@ -56,6 +56,9 @@ class App {
     }
     routes() {
         this.express.use(router)
+        this.express.use((req, res, next) => {
+            res.render('404/NotFound', { layout: 'NotFound.hbs' })
+        })
     }
     engine() {
         this.express.engine('hbs', hbs({
