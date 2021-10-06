@@ -30,8 +30,7 @@
                                         placeholder="Tempo visível">
                                 </div>
                                 <div class="col">
-                                    <input type="text" name="ordem" class="form-control mt-1 mb-1"
-                                        placeholder="Ordem">
+                                    <input type="text" name="ordem" class="form-control mt-1 mb-1" placeholder="Ordem">
                                 </div>
                             </div>
                         </div>
@@ -63,7 +62,12 @@
                     <div class="modal-body">
                         <div class="container">
                             <input type="hidden" name="id" value="{{dataValues.id}}">
-                            <input type="file" name="image" class="form-control mt-1 mb-1" placeholder="">
+                            {{#if dataValues.image}}
+                            <label for="formFile" class="form-label text-light">
+                                Imagem Selecionada: {{dataValues.image}}
+                            </label>
+                            {{/if}}
+                            <input type="file" name="image" class="form-control mt-1 mb-1" accept="image/*">
                             <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"
                                 value="{{dataValues.link}}">
                             <div class="row">

@@ -31,7 +31,7 @@ class SettingsController {
     }
 
     async registerMonitorLine(req, res) {
-        const created = await InlinesProcedules.create({ line: req.body.line, image: req.imageMonitor, link: req.body.link, active: req.body.active, time: req.body.time, ordem: req.body.order })
+        const created = await InlinesProcedules.create({ line: req.body.line, image: req.imageMonitor, link: req.body.link, active: req.body.active, time: req.body.time, ordem: req.body.ordem })
         if (created) {
             initializeSocket.atualizaring(true)
             let msg = new MessagesFlash().success(req, res, 'Registrado com sucesso', '/settings')
@@ -44,8 +44,7 @@ class SettingsController {
 
 
     async editMonitorLine(req, res) {
-        const { id, line, image, link, active, time } = req.body
-        const updated = await InlinesProcedules.updated({ line, image, link, active, time }, id)
+        const updated = await InlinesProcedules.updated({ line: req.body.line, image: req.imageMonitor, link: req.body.link, active: req.body.active, time: req.body.time }, req.body.id)
         if (updated) {
             initializeSocket.atualizaring(true)
             let msg_success = new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
