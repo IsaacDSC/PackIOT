@@ -82,6 +82,16 @@ class InLineProcedules {
         }
     }
 
+    async searchOne(id) {
+        try {
+            const search = await monitorLines.findOne({ where: { id: id } })
+            return search
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
 }
 
 
