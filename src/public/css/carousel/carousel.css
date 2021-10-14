@@ -13,7 +13,7 @@ body {
     position: relative;
 }
 
-#slider iframe {
+#slider #teste {
     display: none;
     position: absolute;
     width: 100%;
@@ -22,6 +22,6 @@ body {
     transition: opacity 800ms;
 }
 
-#slider iframe.selected {
+#slider #teste.selected {
     display: flex;
 }
