@@ -4,6 +4,8 @@ const LinesProcedules = require('../database/procedules/LinesProcedules')
 const MessagesFlash = require('../helpers/messages')
 const InlinesProcedules = require('../database/procedules/InlinesProcedules')
 const { deletedImage } = require('../helpers/deleteImage')
+    //console.log(deletedImage)
+
 
 class SettingsController {
     async index(req, res) {
@@ -57,11 +59,9 @@ class SettingsController {
     }
 
     async deleteMonitorLine(req, res) {
-        const verifyImage = await InlinesProcedules.searchOne(req.params.id)
-        if (verifyImage.image) {
-            const deleted = await deletedImage(verifyImage.image)
-            if (!deleted) return res.redirect('/settings')
-        }
+        const ISdeletedImage = await deletedImage(req.params.id)
+        if (!ISdeletedImage) console.log('\n\nerror delete image\n\n')
+
         const deleted = await InlinesProcedules.delete(req.params.id)
         if (deleted) {
             initializeSocket.atualizaring(true)
