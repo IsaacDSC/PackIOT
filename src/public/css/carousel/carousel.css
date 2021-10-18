@@ -38,8 +38,12 @@ body {
     z-index: 999999;
 }
 
-iframe,
-image {
+iframe {
     min-width: 100%;
     min-height: 100vh;
+}
+
+img {
+    min-width: 100%;
+    min-height: 100%;
 }
