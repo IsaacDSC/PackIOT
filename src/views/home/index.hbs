@@ -4,7 +4,10 @@
     {{#if dataValues.link}}
     <iframe id="teste" class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"></iframe>
     {{else}}
-    <img id="teste" src="/images/uploads/{{dataValues.image}}" alt="{{dataValues.image}}">
+    <div class="container" id="container" style="background-image: url(/images/uploads/{{dataValues.image}});">
+       {{!--  <img id="teste" src="/images/uploads/{{dataValues.image}}" class="img-fluid" alt="{{dataValues.image}}"> --}}
+
+    </div>
     {{/if}}
 
 </div>
