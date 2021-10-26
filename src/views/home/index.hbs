@@ -9,12 +9,9 @@
         <source src="/video/uploads/{{dataValues.video}}" type="video/mp4">
     </video>
     {{/if}}
-    {{#if dataValues.image}}    
-    <div class="container" id="container" >
-        <img id="teste" src="/images/uploads/{{dataValues.image}}" class="img-fluid" alt="{{dataValues.image}}">
-    </div>
+    {{#if dataValues.image}}      
+        <img id="teste" src="/images/uploads/{{dataValues.image}}" time="{{dataValues.time}}" class="img-fluid" alt="{{dataValues.image}}">    
     {{/if}}
 
 {{/each}}
 </div>
-
