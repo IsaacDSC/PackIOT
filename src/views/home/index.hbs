@@ -1,14 +1,20 @@
+<div id="slider" >
 {{#each lines}}
-<div id="slider">
 
-    {{#if dataValues.link}}
+    {{#if dataValues.link}}   
     <iframe id="teste" class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"></iframe>
-    {{else}}
-    <div class="container" id="container">
+    {{/if}}
+    {{#if dataValues.video}}    
+    <video id="teste" time="{{dataValues.time}}"  muted autoplay controls="controls" >
+        <source src="/video/uploads/{{dataValues.video}}" type="video/mp4">
+    </video>
+    {{/if}}
+    {{#if dataValues.image}}    
+    <div class="container" id="container" >
         <img id="teste" src="/images/uploads/{{dataValues.image}}" class="img-fluid" alt="{{dataValues.image}}">
-        
     </div>
     {{/if}}
 
-</div>
 {{/each}}
+</div>
+

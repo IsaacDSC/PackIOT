@@ -18,6 +18,9 @@ const monitorLines = db.sequelize.define('monitorLines', {
     image: {
         type: Sequelize.STRING,
     },
+    video: {
+        type: Sequelize.STRING,
+    },
     link: {
         type: Sequelize.STRING,
         allowNull: false,

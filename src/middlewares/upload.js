@@ -1,47 +1,57 @@
-const multer = require('multer')
-const fs = require('fs')
-const path = require('path')
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 const banners = {
-    folder: path.resolve(__dirname + '', '../', 'public', 'images', 'uploads'),
-    TimeName: Date.now() + '.png',
-    TimeGIF: Date.now() + '.gif'
-}
+    folder_mp4: path.resolve(
+        __dirname + "",
+        "../",
+        "public",
+        "videos",
+        "uploads"
+    ),
+    folder: path.resolve(__dirname + "", "../", "public", "images", "uploads"),
+    TimeName: Date.now() + ".png",
+    TimeGIF: Date.now() + ".gif",
+};
 
-async function createFolder(path, nameFolder) {
-    try {
-        const folder = await fs.mkdirSync(`${path}/${nameFolder}`)
-        return folder
-    } catch (error) {
-        console.log(error)
-    }
-}
+const isAccepted = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        const isAccepted = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
-        if (file.mimetype == isAccepted[0] || file.mimetype == isAccepted[1] || file.mimetype == isAccepted[2] || file.mimetype == isAccepted[3]) {
-            // const createFolder = createFolder(banners.folder, `0${req.body.banner}_${file.originalname}_${banners.fileName}`) /// create folder and folder name line
-            cb(null, banners.folder)
+        console.log(file.mimetype);
+        if (
+            file.mimetype == isAccepted[0] ||
+            file.mimetype == isAccepted[1] ||
+            file.mimetype == isAccepted[2] ||
+            file.mimetype == isAccepted[3]
+        ) {
+            req.typeFile = "image";
+            console.log("image");
+            return cb(null, banners.folder);
+        }
+        if (file.mimetype == "video/mp4") {
+            req.typeFile = "video";
+            return cb(null, banners.folder_mp4);
         } else {
-            return false
+            console.log("else");
+            return cb(null, false);
         }
     },
     filename: function(req, file, cb) {
         //function para contar arquivos
-        let nameImage = file.originalname
+        let fileName = file.originalname;
         fs.readdir(banners.folder, (err, paths) => {
-            req.imageMonitor = `${nameImage}`
-            cb(null, `${nameImage}`)
-        })
-    }
-})
+            req.imageMonitor = `${fileName}`;
+            cb(null, `${fileName}`);
+        });
+    },
+});
 const upload = multer({
     storage,
     fileFilter: (req, res, cb) => {
-        cb(null, true)
-    }
-})
+        cb(null, true);
+    },
+});
 
-
-module.exports = { upload }
+module.exports = { upload };
