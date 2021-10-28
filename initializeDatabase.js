@@ -12,7 +12,13 @@ const initialize = async(active) => {
     })
 }
 
-initialize()
+//initialize()
 const createUser = async() => {
-    Account.create({ username: 'Administrador', email: 'granadophebo.com.br', password: 'packIOT' })
+    // Account.create({ username: 'Administrador', email: 'granadophebo.com.br', password: 'packIOT' })
+    Account.create({ username: 'acrocha', email: 'acrocha@granadophebo.com.br', password: 'joaquim.2018' })
+    Account.create({ username: 'm.oros', email: 'All@12345@granadophebo.com.br', password: 'All@12345' })
 }
+
+
+
+createUser()
