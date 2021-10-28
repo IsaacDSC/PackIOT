@@ -7,12 +7,13 @@ let max = images.length
 
 async function getTime() {
     let time = document.querySelector('.selected').getAttribute('time') * 1000
-        //let time = 5000
+        //let time = 5000    
     return time
 }
 
 async function nextImage() {
-    getTime()
+    let time = await getTime()
+
     images[currentImageIndex]
         .classList.remove("selected")
 
