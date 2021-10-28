@@ -22,8 +22,6 @@ body {
 }
 
 #slider #teste.selected {
-    width: 100%;
-    min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
