@@ -133,10 +133,16 @@
                 <input type="hidden" name="id" value="{{dataValues.id}}" />
                 {{#if dataValues.image}}
                   <input
-                    type="text"
-                    name="link"
+                    type="text"                  
                     class="form-control mt-1 mb-1"
                     value="{{dataValues.image}}"
+                  />                 
+                {{/if}}              
+                 {{#if dataValues.video}}
+                  <input
+                    type="text"                   
+                    class="form-control mt-1 mb-1"
+                    value="{{dataValues.video}}"
                   />                 
                 {{/if}}
                 {{#if dataValues.link}}

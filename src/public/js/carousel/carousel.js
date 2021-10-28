@@ -4,16 +4,14 @@ let images = document.querySelectorAll("#slider #teste")
 let max = images.length
 
 
-
 async function getTime() {
     let time = document.querySelector('.selected').getAttribute('time') * 1000
-        //let time = 5000    
-    return time
+    if (time) return time
+    else return 5000
 }
 
 async function nextImage() {
-    let time = await getTime()
-
+    timeout()
     images[currentImageIndex]
         .classList.remove("selected")
 
@@ -21,21 +19,26 @@ async function nextImage() {
 
     if (currentImageIndex >= max) {
         currentImageIndex = 0
-        document.location.reload()
+            //document.location.reload()
     }
-
-
     images[currentImageIndex]
         .classList.add("selected")
-
 }
 
-
-async function start() {
-    setInterval(async() => {
+async function timeout() {
+    setTimeout(() => {
         nextImage()
     }, await Promise.resolve(getTime()))
 }
+
+async function start() {
+    timeout()
+}
+/* async function start() {
+    setInterval(async() => {
+        nextImage()
+    }, await Promise.resolve(getTime()))
+} */
 
 
 
