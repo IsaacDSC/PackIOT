@@ -1,102 +1,196 @@
 {{#each lines}}
-<div class="modal" tabindex="-1" id="resgisterInLine{{dataValues.id}}">
+  <div class="modal" tabindex="-1" id="resgisterInLine{{dataValues.id}}">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
-            <div class="modalRegisterLine" style="background-color: rgba(0, 0, 0, 0.493);">
-                <div class="modal-header">
-                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Registrar
-                        {{dataValues.name}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div
+        class="modal-content"
+        style="background-image: url(/images/bg_modal.png);"
+      >
+        <div
+          class="modalRegisterLine"
+          style="background-color: rgba(0, 0, 0, 0.493);"
+        >
+          <div class="modal-header">
+            <h5
+              class="modal-title text-light"
+              style="font-weight: 600; font-size: 20px;"
+            >Registrar
+              {{dataValues.name}}</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form
+            action="/settings/register/monitor/line"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="modal-body">
+              <div class="container">
+                <input type="hidden" name="line" value="{{dataValues.name}}" />
+                <input
+                  type="file"
+                  name="image"
+                  class="form-control mt-1 mb-1"
+                />
+                <input
+                  type="text"
+                  name="link"
+                  class="form-control mt-1 mb-1"
+                  placeholder="Link da Linha"
+                />
+                <div class="row">
+                  <div class="col">
+                    <div class="form-floating">
+                      <select
+                        name="active"
+                        class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example"
+                      >
+                        <option value="true">Ativado</option>
+                        <option value="false">Desativado</option>
+                      </select>
+                      <label for="floatingSelect">Status</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      name="time"
+                      class="form-control mt-1 mb-1"
+                      placeholder="Tempo visível"
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      name="ordem"
+                      class="form-control mt-1 mb-1"
+                      placeholder="Ordem"
+                    />
+                  </div>
                 </div>
-                <form action="/settings/register/monitor/line" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="container">
-                            <input type="hidden" name="line" value="{{dataValues.name}}">
-                            <input type="file" name="image" class="form-control mt-1 mb-1" accept="image/*">
-                            <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <select name="active" class="form-select" id="floatingSelect"
-                                            aria-label="Floating label select example">
-                                            <option value="true">Ativado</option>
-                                            <option value="false">Desativado</option>
-                                        </select>
-                                        <label for="floatingSelect">Status</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <input type="text" name="time" class="form-control mt-1 mb-1"
-                                        placeholder="Tempo visível">
-                                </div>
-                                <div class="col">
-                                    <input type="text" name="ordem" class="form-control mt-1 mb-1" placeholder="Ordem">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success"
-                            style="background-color: #025A44; border: none;">Salvar Alterações</button>
-                    </div>
-                </form>
+              </div>
             </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancelar</button>
+              <button
+                type="submit"
+                class="btn btn-success"
+                style="background-color: #025A44; border: none;"
+              >Salvar Alterações</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 {{/each}}
 
-
 {{#each Inlines}}
-<div class="modal" tabindex="-1" id="EditInLine{{dataValues.id}}">
+  <div class="modal" tabindex="-1" id="EditInLine{{dataValues.id}}">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
-            <div class="modalRegisterLine" style="background-color: rgba(0, 0, 0, 0.493);">
-                <div class="modal-header">
-                    <h5 class="modal-title text-light" style="font-weight: 600; font-size: 20px;">Editar
-                        {{dataValues.line}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div
+        class="modal-content"
+        style="background-image: url(/images/bg_modal.png);"
+      >
+        <div
+          class="modalRegisterLine"
+          style="background-color: rgba(0, 0, 0, 0.493);"
+        >
+          <div class="modal-header">
+            <h5
+              class="modal-title text-light"
+              style="font-weight: 600; font-size: 20px;"
+            >Editar
+              {{dataValues.line}}</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form
+            action="/settings/edit/monitor/line"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="modal-body">
+              <div class="container">
+                <input
+                  type="file"
+                  name="image"
+                  class="form-control mt-1 mb-1"
+                />
+                <input type="hidden" name="id" value="{{dataValues.id}}" />
+                {{#if dataValues.image}}
+                  <input
+                    type="text"
+                    name="link"
+                    class="form-control mt-1 mb-1"
+                    value="{{dataValues.image}}"
+                  />                 
+                {{/if}}
+                {{#if dataValues.link}}
+                  <input
+                    type="text"
+                    name="link"
+                    class="form-control mt-1 mb-1"
+                    placeholder="Link da Linha"
+                    value="{{dataValues.link}}"
+                  />
+                {{/if}}
+                <div class="row">
+                  <div class="col">
+                    <div class="form-floating">
+                      <select
+                        name="active"
+                        class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example"
+                      >
+                        <option value="true">{{dataValues.active}}</option>
+                        <option value="true">Ativado</option>
+                        <option value="false">Desativado</option>
+                      </select>
+                      <label for="floatingSelect">Status para Linha</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      name="time"
+                      class="form-control mt-1 mb-1"
+                      placeholder="Tempo visível"
+                      value="{{dataValues.time}}"
+                    />
+                  </div>
                 </div>
-                <form action="/settings/edit/monitor/line" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="container">
-                            <input type="hidden" name="id" value="{{dataValues.id}}">
-                            {{#if dataValues.image}}
-                            <label for="formFile" class="form-label text-light">
-                                Imagem Selecionada: {{dataValues.image}}
-                            </label>
-                            {{/if}}
-                            <input type="file" name="image" class="form-control mt-1 mb-1" accept="image/*">
-                            <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"
-                                value="{{dataValues.link}}">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <select name="active" class="form-select" id="floatingSelect"
-                                            aria-label="Floating label select example">
-                                            <option value="true">{{dataValues.active}}</option>
-                                            <option value="true">Ativado</option>
-                                            <option value="false">Desativado</option>
-                                        </select>
-                                        <label for="floatingSelect">Status para Linha</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <input type="text" name="time" class="form-control mt-1 mb-1"
-                                        placeholder="Tempo visível" value="{{dataValues.time}}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success"
-                            style="background-color: #025A44; border: none;">Salvar Alterações</button>
-                    </div>
-                </form>
+              </div>
             </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancelar</button>
+              <button
+                type="submit"
+                class="btn btn-success"
+                style="background-color: #025A44; border: none;"
+              >Salvar Alterações</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 {{/each}}

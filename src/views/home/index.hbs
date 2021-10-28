@@ -1,17 +1,35 @@
-<div id="slider" >
-{{#each lines}}
+<div id="slider">
+  {{#each lines}}
 
-    {{#if dataValues.link}}   
-    <iframe id="teste" class="selected" time="{{dataValues.time}}" src="{{dataValues.link}}"></iframe>
+    {{#if dataValues.link}}
+      <iframe
+        id="teste"
+        class="selected"
+        time="{{dataValues.time}}"
+        src="{{dataValues.link}}"
+      ></iframe>
     {{/if}}
-    {{#if dataValues.video}}    
-    <video id="teste" time="{{dataValues.time}}"  muted autoplay controls="controls" >
-        <source src="/video/uploads/{{dataValues.video}}" type="video/mp4">
-    </video>
+    {{#if dataValues.video}}
+      <video
+        id="teste"
+        time="{{dataValues.time}}"
+        muted
+        autoplay
+        fullscreen
+        controls="controls"
+      >
+        <source src="/videos/uploads/{{dataValues.video}}"  type="video/mp4" />
+      </video>
     {{/if}}
-    {{#if dataValues.image}}      
-        <img id="teste" src="/images/uploads/{{dataValues.image}}" time="{{dataValues.time}}" class="img-fluid" alt="{{dataValues.image}}">    
+    {{#if dataValues.image}}     
+         <img       
+              id="teste"
+              src="/images/uploads/{{dataValues.image}}"
+              time="{{dataValues.time}}"
+              class="images"
+              alt="{{dataValues.image}}"
+            />    
     {{/if}}
 
-{{/each}}
+  {{/each}}
 </div>
