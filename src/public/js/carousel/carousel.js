@@ -3,6 +3,7 @@ let currentImageIndex = 0
 let images = document.querySelectorAll("#slider #teste")
 let max = images.length
 
+//document.getElementsByTagName('video')[0].load()
 
 async function getTime() {
     let time = document.querySelector('.selected').getAttribute('time') * 1000
