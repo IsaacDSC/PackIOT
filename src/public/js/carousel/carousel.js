@@ -6,25 +6,30 @@ let max = images.length
 //document.getElementsByTagName('video')[0].load()
 
 async function getTime() {
-    let time = document.querySelector('.selected').getAttribute('time') * 1000
+    let time = document.querySelector('.selected').getAttribute('time')
+    if (time < 1000) time = 1000
     if (time) return time
-    else return 5000
 }
 
 async function nextImage() {
-    timeout()
+    getTime()
+
     images[currentImageIndex]
         .classList.remove("selected")
 
     currentImageIndex++
 
-    if (currentImageIndex >= max) {
+    if (currentImageIndex >= max)
         currentImageIndex = 0
-            //document.location.reload()
-    }
+
     images[currentImageIndex]
         .classList.add("selected")
+
+
+    timeout()
 }
+
+
 
 async function timeout() {
     setTimeout(() => {

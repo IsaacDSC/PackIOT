@@ -1,5 +1,5 @@
 const InlineProcedules = require('../database/procedules/InlinesProcedules')
-let TIMES = []
+
 class OverviewLinesController {
 
     async index(req, res) {

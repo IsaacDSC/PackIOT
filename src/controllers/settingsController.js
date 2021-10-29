@@ -55,14 +55,7 @@ class SettingsController {
 
 
     async editMonitorLine(req, res) {
-        const updated = await InlinesProcedules.updated({
-            line: req.body.line,
-            image: req.typeFile == 'image' ? req.imageMonitor : null,
-            video: req.typeFile == 'video' ? req.imageMonitor : null,
-            link: req.body.link,
-            active: req.body.active,
-            time: req.body.time
-        }, req.body.id)
+        const updated = await InlinesProcedules.updated(req.body, req.body.id)
         if (updated) {
             initializeSocket.atualizaring(true)
             let msg_success = new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
