@@ -19,14 +19,16 @@ async function nextImage() {
 
     currentImageIndex++
 
-    if (currentImageIndex >= max)
+    if (currentImageIndex >= max) {
         currentImageIndex = 0
+        start()
+    }
 
     images[currentImageIndex]
         .classList.add("selected")
 
 
-    timeout()
+    return timeout()
 }
 
 
