@@ -3,6 +3,7 @@ let currentImageIndex = 0
 let images = document.querySelectorAll("#slider #teste")
 let max = images.length
 
+images[0].classList.add('selected')
 
 //document.getElementsByTagName('video')[0].load()
 
