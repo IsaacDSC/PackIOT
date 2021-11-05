@@ -3,16 +3,18 @@ let currentImageIndex = 0
 let images = document.querySelectorAll("#slider #teste")
 let max = images.length
 
+
 //document.getElementsByTagName('video')[0].load()
 
-async function getTime() {
-    let time = document.querySelector('.selected').getAttribute('time')
-    if (time < 1000) time = 1000
-    if (time) return time
+async function getTime(index) {
+    let times = []
+    images.forEach(element => {
+        times.push(element.getAttribute('time'))
+    })
+    return times[index]
 }
 
 async function nextImage() {
-    getTime()
 
     images[currentImageIndex]
         .classList.remove("selected")
@@ -36,11 +38,12 @@ async function nextImage() {
 async function timeout() {
     setTimeout(() => {
         nextImage()
-    }, await Promise.resolve(getTime()))
+    }, await Promise.resolve(getTime(currentImageIndex)))
 }
 
 async function start() {
-    timeout()
+    await getTime()
+    await timeout()
 }
 /* async function start() {
     setInterval(async() => {
