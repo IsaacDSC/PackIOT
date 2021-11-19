@@ -2,16 +2,18 @@ let timePV = 1000
 let currentImageIndex = 0
 let images = document.querySelectorAll("#slider #teste")
 let max = images.length
+let times = []
+
+images.forEach(element => {
+    times.push(element.getAttribute('time'))
+})
 
 images[0].classList.add('selected')
 
 //document.getElementsByTagName('video')[0].load()
 
 async function getTime(index) {
-    let times = []
-    images.forEach(element => {
-        times.push(element.getAttribute('time'))
-    })
+    console.log(times)
     return times[index]
 }
 
