@@ -13,7 +13,6 @@ images[0].classList.add('selected')
 //document.getElementsByTagName('video')[0].load()
 
 async function getTime(index) {
-    console.log(times)
     return times[index]
 }
 
