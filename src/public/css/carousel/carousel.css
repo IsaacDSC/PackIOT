@@ -52,3 +52,7 @@ video {
     margin-top: 5%;
     background: lawngreen;
 }
+
+#video {
+    display: none;
+}

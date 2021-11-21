@@ -27,16 +27,14 @@ class SettingsController {
         const created = await LinesProcedules.create(name, link)
         if (created) {
             initializeSocket.atualizaring(true)
-            let message = new MessagesFlash().success(req, res, 'Registrado com sucesso', '/settings')
-            console.log(message)
+            new MessagesFlash().success(req, res, 'Registrado com sucesso', '/settings')
+
         } else {
-            let message = new MessagesFlash().error(req, res, '/settings')
-            console.log(message)
+            new MessagesFlash().error(req, res, '/settings')
         }
     }
 
     async registerMonitorLine(req, res) {
-        console.log(req.body)
         const created = await InlinesProcedules.create({
             line: req.body.line,
             image: req.typeFile == 'image' ? req.imageMonitor : req.body.image,
@@ -59,11 +57,9 @@ class SettingsController {
         const updated = await InlinesProcedules.updated(req.body, req.body.id)
         if (updated) {
             initializeSocket.atualizaring(true)
-            let msg_success = new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
-            console.log(msg_success)
+            new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
         } else {
-            let error_success = new MessagesFlash().success(req, res, '/settings')
-            console.log(error_success)
+            new MessagesFlash().success(req, res, '/settings')
         }
     }
 
@@ -74,11 +70,9 @@ class SettingsController {
         const deleted = await InlinesProcedules.delete(req.params.id)
         if (deleted) {
             initializeSocket.atualizaring(true)
-            let msg_success = new MessagesFlash().success(req, res, 'Deletado com sucesso', '/settings')
-            console.log(msg_success)
+            new MessagesFlash().success(req, res, 'Deletado com sucesso', '/settings')
         } else {
-            let error_success = new MessagesFlash().error(req, res, '/settings')
-            console.log(error_success)
+            new MessagesFlash().error(req, res, '/settings')
         }
 
     }
@@ -98,11 +92,9 @@ class SettingsController {
         const deleted = await LinesProcedules.delete(req.params.id)
         if (deleted) {
             initializeSocket.atualizaring(true)
-            let msg_success = new MessagesFlash().success(req, res, 'Deletado com sucesso', '/settings')
-            console.log(msg_success)
+            new MessagesFlash().success(req, res, 'Deletado com sucesso', '/settings')
         } else {
-            let error_success = new MessagesFlash().error(req, res, '/settings')
-            console.log(error_success)
+            new MessagesFlash().error(req, res, '/settings')
         }
     }
 
@@ -117,11 +109,9 @@ class SettingsController {
         const updated = await InlinesProcedules.EditOrdem({ ordem, active }, id)
         if (updated) {
             initializeSocket.atualizaring(true)
-            let msg_success = new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
-            console.log(msg_success)
+            new MessagesFlash().success(req, res, 'Editado com sucesso', '/settings')
         } else {
-            let error_success = new MessagesFlash().error(req, res, '/settings')
-            console.log(error_success)
+            new MessagesFlash().error(req, res, '/settings')
         }
     }
 

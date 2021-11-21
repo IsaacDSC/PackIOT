@@ -1,59 +1,48 @@
-let timePV = 1000
-let currentImageIndex = 0
-let images = document.querySelectorAll("#slider #teste")
-let max = images.length
-let times = []
+const iframe = document.querySelectorAll("#iframe")
+const video = document.querySelectorAll("#video")
+const image = document.querySelectorAll("#images")
 
-images.forEach(element => {
-    times.push(element.getAttribute('time'))
+let loop = 0
+let loopVideo = 0
+
+const timeIframe = []
+
+iframe.forEach((element) => {
+    timeIframe.push(element.getAttribute('time'))
 })
 
-images[0].classList.add('selected')
+async function timeoutVideo() {
 
-//document.getElementsByTagName('video')[0].load()
+    video[loopVideo].style.display = 'block'
+    video[loopVideo].play()
+    video[loopVideo].muted = true
 
-async function getTime(index) {
-    console.log(times)
-    return times[index]
-}
-
-async function nextImage() {
-
-    images[currentImageIndex]
-        .classList.remove("selected")
-
-    currentImageIndex++
-
-    if (currentImageIndex >= max) {
-        currentImageIndex = 0
+    video[loopVideo].onended = async() => {
+        video[loopVideo].style.display = 'none'
+        iframe[loop].style.display = 'block'
         start()
+        loopVideo++
+        if (loopVideo >= video.length) loopVideo = 0
     }
 
-    images[currentImageIndex]
-        .classList.add("selected")
-
-
-    return timeout()
 }
 
 
+async function timeoutIframe(choice) {
+    loop++
+    if (loop >= timeIframe.length) loop = 0
 
-async function timeout() {
-    setTimeout(() => {
-        nextImage()
-    }, await Promise.resolve(getTime(currentImageIndex)))
+    if (choice == 'iframe') {
+        setTimeout(() => {
+            iframe[loop].style.display = 'none'
+            timeoutVideo()
+        }, timeIframe[loop])
+    }
 }
 
 async function start() {
-    await getTime()
-    await timeout()
+    timeoutIframe('iframe')
 }
-/* async function start() {
-    setInterval(async() => {
-        nextImage()
-    }, await Promise.resolve(getTime()))
-} */
-
 
 
 window.addEventListener("load", start)

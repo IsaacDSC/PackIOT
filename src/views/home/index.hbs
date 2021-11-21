@@ -1,35 +1,15 @@
 <div id="slider">
   {{#each lines}}
 
-    {{#if dataValues.link}}
-      <iframe
-        id="teste"
-        time="{{dataValues.time}}"
-        src="{{dataValues.link}}"
-      ></iframe>
-    {{/if}}
-    {{#if dataValues.video}}
-      <video
-        id="teste"
-        time="{{dataValues.time}}"
-        muted
-        autoplay
-        fullscreen
-        loop
-        controls="controls"
-      >
-        <source src="/videos/uploads/{{dataValues.video}}"  type="video/mp4" />
-      </video>
-    {{/if}}
-    {{#if dataValues.image}}     
-         <img       
-              id="teste"
-              src="/images/uploads/{{dataValues.image}}"
-              time="{{dataValues.time}}"
-              class="images"
-              alt="{{dataValues.image}}"
-            />    
-    {{/if}}
+  {{#if dataValues.link}}
+  <iframe id="iframe" time="{{dataValues.time}}" src="{{dataValues.link}}"></iframe>
+  {{/if}}
 
+  {{#if dataValues.video}}
+  <video id="video" time="{{dataValues.time}}" muted fullscreen  controls="controls">
+    <source src="/videos/uploads/{{dataValues.video}}" type="video/mp4" />
+  </video>
+  {{/if}}
+  
   {{/each}}
 </div>
