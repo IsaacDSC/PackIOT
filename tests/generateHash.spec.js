@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+/* const bcrypt = require('bcrypt')
 
 
 
@@ -10,4 +10,9 @@ async function teste() {
 }
 
 
-teste()
+teste() */
+
+
+const { searchFileUploads } = require('../src/helpers/searchFilesUploads')
+
+searchFileUploads()

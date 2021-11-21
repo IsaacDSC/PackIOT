@@ -4,7 +4,7 @@ const LinesProcedules = require('../database/procedules/LinesProcedules')
 const MessagesFlash = require('../helpers/messages')
 const InlinesProcedules = require('../database/procedules/InlinesProcedules')
 const { deletedImage } = require('../helpers/deleteImage')
-    //console.log(deletedImage)
+const { searchFileUploadsImages, searchFileUploadsVideos } = require('../helpers/searchFilesUploads')
 
 
 class SettingsController {
@@ -14,7 +14,9 @@ class SettingsController {
             const lines = await LinesProcedules.searchAll()
             const Inlines = await InlinesProcedules.searchAll()
             let Lines = lines ? lines : null
-            res.render('settings/settings', { lines: Lines, Inlines, ServerHost })
+            const UploadsVideos = await searchFileUploadsVideos()
+            const UploadsImages = await searchFileUploadsImages()
+            res.render('settings/settings', { lines: Lines, Inlines, ServerHost, UploadsVideos, UploadsImages })
         } catch (error) {
             console.log(error)
         }
@@ -34,22 +36,21 @@ class SettingsController {
     }
 
     async registerMonitorLine(req, res) {
+        console.log(req.body)
         const created = await InlinesProcedules.create({
             line: req.body.line,
-            image: req.typeFile == 'image' ? req.imageMonitor : null,
-            video: req.typeFile == 'video' ? req.imageMonitor : null,
-            link: req.body.link,
+            image: req.typeFile == 'image' ? req.imageMonitor : req.body.image,
+            video: req.typeFile == 'video' ? req.imageMonitor : req.body.video,
+            link: req.body.link ? req.body.link : '',
             active: req.body.active,
             time: req.body.time,
             ordem: req.body.ordem
         })
         if (created) {
             initializeSocket.atualizaring(true)
-            let msg = new MessagesFlash().success(req, res, 'Registrado com sucesso', '/settings')
-            console.log(msg)
+            new MessagesFlash().success(req, res, 'Registrado com sucesso', '/settings')
         } else {
-            let msgError = new MessagesFlash().error(req, res, '/settings')
-            console.error(msgError)
+            new MessagesFlash().error(req, res, '/settings')
         }
     }
 
