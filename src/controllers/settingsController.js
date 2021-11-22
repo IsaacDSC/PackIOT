@@ -16,6 +16,7 @@ class SettingsController {
             let Lines = lines ? lines : null
             const UploadsVideos = await searchFileUploadsVideos()
             const UploadsImages = await searchFileUploadsImages()
+            console.log(UploadsImages, UploadsVideos)
             res.render('settings/settings', { lines: Lines, Inlines, ServerHost, UploadsVideos, UploadsImages })
         } catch (error) {
             console.log(error)
