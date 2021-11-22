@@ -25,6 +25,7 @@ initialize(false)
 
 const port = process.env.PORT_APP
 server.listen(port, () => {
+    setTimeout(() => { atualizaring() }, 5000)
     console.log('starter server in port: http://127.0.0.1:' + port)
 });
 
