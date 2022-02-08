@@ -23,7 +23,7 @@ const { initialize } = require('./database/initialize/initialize')
 initialize(false)
 
 
-const port = process.env.PORT_APP
+const port = process.env.PORT_APP || 80
 server.listen(port, () => {
     console.log('starter server in port: http://127.0.0.1:' + port)
 });
