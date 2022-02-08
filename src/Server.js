@@ -23,8 +23,12 @@ const { initialize } = require('./database/initialize/initialize')
 initialize(false)
 
 
+<<<<<<< HEAD
 const port = process.env.PORT_APP || 3000
 const host = process.env.HOST_APP || '127.0.0.1'
+=======
+const port = process.env.PORT_APP || 80
+>>>>>>> main
 server.listen(port, () => {
     setTimeout(() => { atualizaring() }, 5000)
     console.log(`starter server in port: http://${host}:${port}`)
