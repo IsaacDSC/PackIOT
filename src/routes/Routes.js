@@ -16,16 +16,12 @@ const settingsController = require('../controllers/settingsController')
 const accountController = require('../controllers/accountController')
 const OverviewLinesController = require('../controllers/linesController')
 
-//function helper create dinamic acess 
-//insertRouterLines(router) //routers prefix usin /overview sufix using name Line
-
 //NAVIGATIONS ROUTES
-///route initialize system
 router.get('/', homeController.index)
     //router get datas overview lines
 router.get('/overview/:line', OverviewLinesController.index)
 
-///routes settings 
+///routes settings
 router.get('/settings', auth, settingsController.index)
 router.post('/settings/line/search', settingsController.searchLine)
     ///routes settings line

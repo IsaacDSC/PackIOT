@@ -19,7 +19,6 @@ const isAccepted = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        console.log(file.mimetype);
         if (
             file.mimetype == isAccepted[0] ||
             file.mimetype == isAccepted[1] ||
@@ -27,14 +26,13 @@ const storage = multer.diskStorage({
             file.mimetype == isAccepted[3]
         ) {
             req.typeFile = "image";
-            console.log("image");
+
             return cb(null, banners.folder);
         }
         if (file.mimetype == "video/mp4") {
             req.typeFile = "video";
             return cb(null, banners.folder_mp4);
         } else {
-            console.log("else");
             return cb(null, false);
         }
     },
