@@ -22,9 +22,9 @@ async function insertLines(content) {
                 monitor.innerHTML += `
 <form action="/settings/edit/monitor/ordem/line" method="post">
     <input type="hidden" name="id" value="${element.id}">
-    <div class="row mt-1 mb-1"> 
-        <div class="col-xl-2 col-sm-2 col-md-2  text-center">
-            <h4 class="text-center">${element.line}</h4>
+    <div class="row mt-1 mb-1 row align-items-center"> 
+        <div class="col-xl-2 col-sm-6 col-md-6">
+            <h6 class="d-table-cell align-middle text-center">${element.line}</h6>
         </div>
         <div class="col-xl-2 col-sm-2 col-md-2 mt-0 text-center">
             <input type="number" name="ordem" value="${element.ordem}" class="form-control col-12">

@@ -1,48 +1,51 @@
-const iframe = document.querySelectorAll("#iframe")
-const video = document.querySelectorAll("#video")
-const image = document.querySelectorAll("#images")
-
-let loop = 0
-let loopVideo = 0
-
+const identify = document.querySelectorAll(".identify")
 const timeIframe = []
+const classIdentify = []
+let loop = 0
 
-iframe.forEach((element) => {
+identify.forEach((element) => {
     timeIframe.push(element.getAttribute('time'))
 })
 
-async function timeoutVideo() {
+identify.forEach((element) => {
+    classIdentify.push(element.getAttribute('id'))
+})
 
-    video[loopVideo].style.display = 'block'
-    video[loopVideo].play()
-    video[loopVideo].muted = true
-
-    video[loopVideo].onended = async() => {
-        video[loopVideo].style.display = 'none'
-        iframe[loop].style.display = 'block'
-        start()
-        loopVideo++
-        if (loopVideo >= video.length) loopVideo = 0
-    }
-
-}
-
-
-async function timeoutIframe(choice) {
+async function increment(){
     loop++
-    if (loop >= timeIframe.length) loop = 0
+    if (loop >= identify.length) loop=0
+    changeFrame()
+}
 
-    if (choice == 'iframe') {
-        setTimeout(() => {
-            iframe[loop].style.display = 'none'
-            timeoutVideo()
-        }, timeIframe[loop])
+async function changeFrame(){
+    switch (classIdentify[loop]){
+        case "iframe":
+           identify[loop].style.display = 'block'
+           setTimeout(() => {
+                identify[loop].style.display = 'none'
+                increment()
+                }, timeIframe[loop])
+           break
+        case "video":
+            identify[loop].style.display = 'block'
+            identify[loop].play()
+            identify[loop].muted = true
+            identify[loop].onended = async() => {
+                identify[loop].style.display = 'none'
+                increment()
+                }   
+            break
+        case "image":
+            identify[loop].style.display = 'block'
+            setTimeout(() => {
+                identify[loop].style.display = 'none'
+                increment()
+                }, timeIframe[loop])
+            break
+        default:
+            console.log('Desculpa, você precisa ter uma expressão', classIdentify[loop])
+            break
     }
 }
 
-async function start() {
-    timeoutIframe('iframe')
-}
-
-
-window.addEventListener("load", start)
+window.addEventListener("load", changeFrame)

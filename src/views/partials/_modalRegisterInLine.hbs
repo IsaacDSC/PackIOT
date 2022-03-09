@@ -1,3 +1,4 @@
+
 <div class="modal" tabindex="-1" id="resgisterInLine">
     <div class="modal-dialog">
         <div class="modal-content" style="background-image: url(/images/bg_modal.png);">
@@ -7,24 +8,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="btn-group mt-2" role="group" aria-label="Basic example">
-                    <button type="button" id="link" onclick="choice('link')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1 active">Link
-            PackIOT</button>
-                    <button type="button" id="ReadVideosUploads" onclick="choice('ReadVideosUploads')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Videos
-            Carregados</button>
-                    <button type="button" id="ReadImagesUploads" onclick="choice('ReadImagesUploads')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Images
-            Carregadas</button>
-                    <button type="button" id="Upload" onclick="choice('Upload')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Upload de
-            Arquivos</button>
+                    <button type="button" id="link" onclick="choice('link','choiceDisplay')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1 active">Link PackIOT</button>
+                    <button type="button" id="ReadVideosUploads" onclick="choice('ReadVideosUploads','choiceDisplay')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Videos Carregados</button>
+                    <button type="button" id="ReadImagesUploads" onclick="choice('ReadImagesUploads','choiceDisplay')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Images Carregadas</button>
+                    <button type="button" id="Upload" onclick="choice('Upload','choiceDisplay')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Upload de Arquivos</button>
                 </div>
                 <form action="/settings/register/monitor/line" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="container">
                             <select name="line" id="line" class="form-control mt-1 mb-2">
-                <option value="">Selectione a linha desejada</option>
-                {{#each lines}}
-                <option value="{{dataValues.name}}">{{dataValues.name}}</option>
-                {{/each}}
-              </select>
+                                <option value="">Selectione a linha desejada</option>
+                                {{#each lines}}
+                                <option value="{{dataValues.name}}">{{dataValues.name}}</option>
+                                {{/each}}
+                            </select>
                             <div class="mb-2" id="choiceDisplay">
                                 choiceDisplay{{dataValues.id}}
                             </div>
@@ -32,9 +29,9 @@
                                 <div class="col">
                                     <div class="form-floating">
                                         <select name="active" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option value="true">Ativado</option>
-                      <option value="false">Desativado</option>
-                    </select>
+                                            <option value="true">Ativado</option>
+                                            <option value="false">Desativado</option>
+                                        </select>
                                         <label for="floatingSelect">Status</label>
                                     </div>
                                 </div>
@@ -49,64 +46,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" style="background-color: #025A44; border: none;">Salvar
-              Alterações</button>
+                        <button type="submit" class="btn btn-success" style="background-color: #025A44; border: none;">Salvar Alterações</button>
                     </div>
                 </form>
-
-                <script>
-                    let choiceDisplay = document.querySelector('#choiceDisplay')
-
-                    choiceDisplay.innerHTML = `
-                      <div class="alert alert-warning d-flex align-items-center" role="alert">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                          Selecione o tipo de vizualização
-                        </div>
-                      </div>
-                    `
-
-                    function choice(TypeChoice) {
-                        try {
-                            switch (TypeChoice) {
-                                case 'ReadVideosUploads':
-                                    choiceDisplay.innerHTML = `
-                                      <select name="video" id="" class="form-control">
-                                          <option value="">Selecione o video</option>
-                                          {{#each UploadsVideos}}
-                                          <option value="{{this}}">{{this}}</option>
-                                          {{/each}}
-                                      </select>
-                                      <input type="hidden" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"/>
-                                      `
-                                    break;
-                                case 'ReadImagesUploads':
-                                    choiceDisplay.innerHTML = `
-                                      <select name="image" id="" class="form-control">
-                                          <option value="">Selecione a imagem</option>
-                                          {{#each UploadsImages}}
-                                          <option value="{{this}}">{{this}}</option>
-                                          {{/each}}
-                                      </select>
-                                      <input type="hidden" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"/>
-                                      `
-                                    break;
-                                case 'link':
-                                    choiceDisplay.innerHTML = `
-                                      <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha">
-                                      `
-                                    break;
-                                case 'Upload':
-                                    choiceDisplay.innerHTML = `
-                                      <input type="file" name="image" class="form-control mt-1 mb-1" />
-                                    `
-                                    break;
-                            }
-                        } catch (error) {
-                            console.log(error)
-                        }
-                    }
-                </script>
             </div>
         </div>
     </div>
@@ -122,22 +64,39 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="btn-group mt-2" role="group" aria-label="Basic example">
+                    <button type="button" id="editlink" onclick="choice('link','#EditLine{{dataValues.id}}','{{dataValues.link}}')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1 active">Link PackIOT</button>
+                    <button type="button" id="editReadVideosUploads" onclick="choice('ReadVideosUploads','#EditLine{{dataValues.id}}','{{dataValues.video}}')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Videos Carregados</button>
+                    <button type="button" id="editReadImagesUploads" onclick="choice('ReadImagesUploads','#EditLine{{dataValues.id}}','{{dataValues.image}}')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Images Carregadas</button>
+                    <button type="button" id="editUpload" onclick="choice('Upload','#EditLine{{dataValues.id}}')" style="background-color: #025A44; border: none; color: white;" class="btn btn ml-1">Upload de Arquivos</button>
+                </div>
                 <form action="/settings/edit/monitor/line" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="container">
-                            <input type="file" name="image" class="form-control mt-1 mb-1" />
-                            <input type="hidden" name="id" value="{{dataValues.id}}" /> {{#if dataValues.image}}
-                            <input type="text" class="form-control mt-1 mb-1" value="{{dataValues.image}}" /> {{/if}} {{#if dataValues.video}}
-                            <input type="text" class="form-control mt-1 mb-1" value="{{dataValues.video}}" /> {{/if}} {{#if dataValues.link}}
-                            <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha" value="{{dataValues.link}}" /> {{/if}}
+                            <div class="form-control mt-1 mb-1" >
+                                {{dataValues.line}}
+                            </div>
+                            <input type="hidden" name="id" value="{{dataValues.id}}" /> 
+
+                            <input type="hidden" id="LinkEditId{{dataValues.id}}" value="{{dataValues.link}}" /> 
+
+                            <div class="mb-2" id="EditLine{{dataValues.id}}">
+                                <div class="form-control mt-1 mb-1" >
+                                   {{#if dataValues.image}} {{dataValues.image}} {{/if}} 
+                                   {{#if dataValues.video}} {{dataValues.video}} {{/if}} 
+                                   {{#if dataValues.link}} {{dataValues.link}} {{/if}}
+                                   
+                                </div>
+                            </div>
+                            
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating">
                                         <select name="active" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option value="true">{{dataValues.active}}</option>
-                      <option value="true">Ativado</option>
-                      <option value="false">Desativado</option>
-                    </select>
+                                            <option value="true">{{dataValues.active}}</option>
+                                            <option value="true">Ativado</option>
+                                            <option value="false">Desativado</option>
+                                        </select>
                                         <label for="floatingSelect">Status para Linha</label>
                                     </div>
                                 </div>
@@ -149,13 +108,93 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success" style="background-color: #025A44; border: none;">Salvar
-              Alterações</button>
+                        <button type="submit" class="btn btn-success" style="background-color: #025A44; border: none;">Salvar Alterações</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 </div>
 {{/each}}
+
+<script>
+let choiceDisplay = document.querySelector('#choiceDisplay')
+
+choiceDisplay.innerHTML = `
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            Selecione o tipo de vizualização
+        </div>
+    </div>`
+
+function choice(TypeChoice,EditLineId,EditSelected) {
+    try {
+        switch (TypeChoice) {
+            case 'ReadVideosUploads':
+                choiceDisplay.innerHTML = `
+                <select name="video" id="editvideo" class="form-control">
+                    <option value="">Selecione o video</option>
+                    {{#each UploadsVideos}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <input type="hidden" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"/>`
+                               
+                document.querySelector(EditLineId).innerHTML = `
+                <select id="VideoEditId" name="video" id="" class="form-control">
+                    <option value="">Selecione o video</option>
+                    {{#each UploadsVideos}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <input type="hidden" name="image" value="" class="form-control mt-1 mb-1" placeholder="Link da imagem"/> 
+                <input type="hidden" name="link" value="" class="form-control mt-1 mb-1" placeholder="Link da Linha"/> `
+                document.querySelector("#VideoEditId").value=EditSelected
+                break;
+    
+            case 'ReadImagesUploads':
+                choiceDisplay.innerHTML = `
+                <select name="image" id="" class="form-control">
+                    <option value="">Selecione a imagem</option>
+                    {{#each UploadsImages}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <input type="hidden" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha"/>`
+
+                document.querySelector(EditLineId).innerHTML = `
+                <select id="ImageEditId" name="image" id="" class="form-control">
+                    <option value="">Selecione a imagem</option>
+                    {{#each UploadsImages}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                <input type="hidden" name="video" value="" class="form-control mt-1 mb-1" placeholder="Link do video"/> 
+                <input type="hidden" name="link" value="" class="form-control mt-1 mb-1" placeholder="Link da Linha"/> `
+                document.querySelector("#ImageEditId").value=EditSelected
+                break;
+            
+            case 'link':
+                choiceDisplay.innerHTML = `
+                <input type="text" name="link" class="form-control mt-1 mb-1" placeholder="Link da Linha">`
+
+                document.querySelector(EditLineId).innerHTML = `
+                <input type="text" id="LinkEditId" name="link" value="" class="form-control mt-1 mb-1" placeholder="Link da Linha"/>
+                <input type="hidden" name="image" value="" class="form-control mt-1 mb-1" placeholder="Link da imagem"/> 
+                <input type="hidden" name="video" value="" class="form-control mt-1 mb-1" placeholder="Link do video"/>`
+                document.querySelector("#LinkEditId").value=EditSelected
+            break;
+            
+            case 'Upload':
+                choiceDisplay.innerHTML = `
+                <input type="file" name="image" class="form-control mt-1 mb-1" />`
+
+                
+            break;
+            }
+    } catch (error) {
+        console.log(error)
+    }
+}
+</script>
