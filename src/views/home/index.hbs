@@ -2,13 +2,17 @@
   {{#each lines}}
 
   {{#if dataValues.link}}
-  <iframe id="iframe" time="{{dataValues.time}}" src="{{dataValues.link}}"></iframe>
+  <iframe id="iframe" time="{{dataValues.time}}" src="{{dataValues.link}}" class="identify" ordem="{{dataValues.ordem}}" style="display: none;"></iframe>
   {{/if}}
 
   {{#if dataValues.video}}
-  <video id="video" time="{{dataValues.time}}" muted fullscreen  controls="controls">
+  <video id="video" time="{{dataValues.time}}" muted fullscreen  controls="controls" class="identify" ordem="{{dataValues.ordem}}" style="display: none;">
     <source src="/videos/uploads/{{dataValues.video}}" type="video/mp4" />
   </video>
+  {{/if}}
+
+  {{#if dataValues.image}}     
+  <img id="image" time="{{dataValues.time}}" src="/images/uploads/{{dataValues.image}}" class="identify" ordem="{{dataValues.ordem}}" style="display: none; max-width: 1820px; max-height: 930px; "/>    
   {{/if}}
   
   {{/each}}
